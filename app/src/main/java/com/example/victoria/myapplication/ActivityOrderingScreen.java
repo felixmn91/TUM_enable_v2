@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.TextView;
 
-public class ActivityOrderingScreen extends FragmentActivity {
+public class ActivityOrderingScreen extends FragmentActivity implements FragmentHealthyProductArea.OnHealthyProductSelectedListener
+{
 
     private static final String SELECTED_VERSION = "com.example.android.selected_version";
     private static final String TAG = "LaunchActivity";
@@ -40,5 +41,10 @@ public class ActivityOrderingScreen extends FragmentActivity {
             fragmentUnhealthyProductArea = new FragmentUnhealthyProductArea();
             fm.beginTransaction().add(R.id.fragmentContainer_unhealthy_product_area, fragmentUnhealthyProductArea).commit();
         }
+    }
+
+    public void onHealthyProductSelected(int id)
+    {
+
     }
 }

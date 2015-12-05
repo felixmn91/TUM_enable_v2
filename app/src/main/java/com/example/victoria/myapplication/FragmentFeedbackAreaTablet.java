@@ -1,7 +1,6 @@
 package com.example.victoria.myapplication;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,8 +11,9 @@ import android.widget.TextView;
 /**
  * Created by Lennart Mittag on 05.12.2015.
  */
-public class FragmentFeedbackAreaBar extends Fragment {
-    private TextView mVersionField;
+public class FragmentFeedbackAreaTablet extends Fragment
+{
+    private static final String Tag = "FragmentFAT";
 
     //onCreate only Configures the fragment instance
     @Override
@@ -22,11 +22,10 @@ public class FragmentFeedbackAreaBar extends Fragment {
         super.onCreate(saverdInstacesState);
     }
 
-
     //You Inflate Fragment in onCreateView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
-        View v = inflater.inflate(R.layout.layout_fragment_feedbackbar, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
+        View v = inflater.inflate(R.layout.layout_fragment_feedback_area_tablet, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
 
         Log.d("FragmentFeedbackAreaBar", "bla");
         return v;

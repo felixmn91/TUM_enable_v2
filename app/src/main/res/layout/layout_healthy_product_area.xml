@@ -4,11 +4,12 @@
                       android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/healthyProductContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#228b22"
         android:orientation="horizontal">
-
+<!--
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="match_parent"
@@ -34,6 +35,6 @@
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/product_chicken_mcnuggets_product_preview"/>
+            android:src="@drawable/product_chicken_mcnuggets_product_preview"/> -->
     </LinearLayout>
 </HorizontalScrollView>
