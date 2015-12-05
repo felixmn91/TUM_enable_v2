@@ -4,18 +4,21 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.widget.TextView;
+import android.util.Log;
 
 public class ActivityOrderingScreen extends FragmentActivity implements FragmentHealthyProductArea.OnHealthyProductSelectedListener
 {
 
     private static final String SELECTED_VERSION = "com.example.android.selected_version";
     private static final String TAG = "LaunchActivity";
-    private TextView mVersionTextView;
+
+    private Fragment fragmentFeedbackArea;
+
     private String mSelectedVersion;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.layout_ordering_screen);
@@ -24,20 +27,23 @@ public class ActivityOrderingScreen extends FragmentActivity implements Fragment
 
         FragmentManager fm = getFragmentManager();
 
-        Fragment fragmentFeedbackArea = fm.findFragmentById(R.id.fragmentContainer_feedback_area);
-        if (fragmentFeedbackArea == null) {
+        fragmentFeedbackArea = fm.findFragmentById(R.id.fragmentContainer_feedback_area);
+        if (fragmentFeedbackArea == null)
+        {
             fragmentFeedbackArea = new FragmentFeedbackArea();
             fm.beginTransaction().add(R.id.fragmentContainer_feedback_area, fragmentFeedbackArea).commit();
         }
 
         Fragment fragmentHealthyProductArea = fm.findFragmentById(R.id.fragmentContainer_healthy_product_area);
-        if (fragmentHealthyProductArea == null) {
+        if (fragmentHealthyProductArea == null)
+        {
             fragmentHealthyProductArea = new FragmentHealthyProductArea();
             fm.beginTransaction().add(R.id.fragmentContainer_healthy_product_area, fragmentHealthyProductArea).commit();
         }
 
         Fragment fragmentUnhealthyProductArea = fm.findFragmentById(R.id.fragmentContainer_unhealthy_product_area);
-        if (fragmentUnhealthyProductArea == null) {
+        if (fragmentUnhealthyProductArea == null)
+        {
             fragmentUnhealthyProductArea = new FragmentUnhealthyProductArea();
             fm.beginTransaction().add(R.id.fragmentContainer_unhealthy_product_area, fragmentUnhealthyProductArea).commit();
         }
@@ -45,6 +51,14 @@ public class ActivityOrderingScreen extends FragmentActivity implements Fragment
 
     public void onHealthyProductSelected(int id)
     {
+        if (fragmentFeedbackArea != null && fragmentFeedbackArea instanceof OnIncomingOrderListener)
+        {
+            ((OnIncomingOrderListener) fragmentFeedbackArea).onIncomingOrder(id);
+        }
+    }
 
+    public interface OnIncomingOrderListener
+    {
+        public void onIncomingOrder(int id);
     }
 }
