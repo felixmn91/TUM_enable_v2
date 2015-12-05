@@ -1,0 +1,31 @@
+<!-- This layout will be the container for several fragments -->
+
+<LinearLayout
+    android:id="@+id/layout_ordering_screen"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer_feedback_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer_healthy_product_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer_unhealthy_product_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+    </FrameLayout>
+
+</LinearLayout>
