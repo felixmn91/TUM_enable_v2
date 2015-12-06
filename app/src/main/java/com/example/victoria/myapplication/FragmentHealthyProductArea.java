@@ -70,6 +70,26 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
         }
     }
 
+    private void initializeImgButtonsRow2() {
+        imgButtons = new ArrayList<>();
+
+        ArrayList<Product> healthyProducts = ProgramLogicSingleton.getInstance().getHealthyProducts();
+        int i = 0;
+        for (Product p : healthyProducts)
+        {
+            ImageButton btnImg = new ImageButton(getActivity());
+            btnImg.setImageResource(p.getPathPicture());
+            btnImg.setAdjustViewBounds(false);
+            btnImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            btnImg.setOnClickListener(this);
+            btnImg.setId(i);
+
+            healthyProductContainer.addView(btnImg);
+
+            i++;
+        }
+    }
+
 
     //You Inflate Fragment in onCreateView
     @Override

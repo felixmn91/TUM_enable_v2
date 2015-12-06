@@ -17,7 +17,9 @@ import com.example.victoria.myapplication.com.example.victoria.ProductHandling.P
 /**
  * Created by Lennart Mittag on 05.12.2015.
  */
-public class FragmentFeedbackAreaTablet extends Fragment implements ActivityOrderingScreen.OnIncomingOrderListener
+public class FragmentFeedbackAreaTablet extends Fragment
+        implements ActivityOrderingScreen.OnIncomingOrderListener,
+        View.OnClickListener
 {
     private static final String Tag = "FragmentFAT";
 
@@ -48,6 +50,7 @@ public class FragmentFeedbackAreaTablet extends Fragment implements ActivityOrde
         ImageButton btnImg = new ImageButton(getActivity());
         btnImg.setImageResource(p.getPathPicture());
         btnImg.setAdjustViewBounds(true);
+        btnImg.setOnClickListener(this);
         btnImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
         btnImg.setId(0);
 
@@ -55,6 +58,13 @@ public class FragmentFeedbackAreaTablet extends Fragment implements ActivityOrde
             feedback_area_tabletContainer = (LinearLayout) getActivity().findViewById(R.id.feedback_area_tabletContainer);
         }
 
+        feedback_area_tabletContainer.removeAllViewsInLayout();
         feedback_area_tabletContainer.addView(btnImg);
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        feedback_area_tabletContainer.removeView(v);
     }
 }

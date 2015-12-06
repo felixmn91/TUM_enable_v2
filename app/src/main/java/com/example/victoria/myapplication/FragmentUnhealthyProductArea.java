@@ -30,7 +30,7 @@ public class FragmentUnhealthyProductArea extends Fragment
     {
         View v = inflater.inflate(R.layout.layout_unhealthy_product_area, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
 
-        Log.d("FragmentHPArea", "Standard Version");
+        Log.d("FragmentUHPArea", "Standard Version");
         return v;
     }
 }
