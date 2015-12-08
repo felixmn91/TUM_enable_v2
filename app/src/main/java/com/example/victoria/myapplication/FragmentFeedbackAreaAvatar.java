@@ -9,9 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * Created by Lennart Mittag on 05.12.2015.
+ * Created by Lennart Mittag on 06.12.2015.
  */
-public class FragmentFeedbackAreaBar extends Fragment {
+public class FragmentFeedbackAreaAvatar extends Fragment
+{
     private TextView mVersionField;
 
     //onCreate only Configures the fragment instance
@@ -25,9 +26,9 @@ public class FragmentFeedbackAreaBar extends Fragment {
     //You Inflate Fragment in onCreateView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
-        View v = inflater.inflate(R.layout.layout_fragment_feedback_area_bar, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
+        View v = inflater.inflate(R.layout.layout_fragment_feedback_area_avatar, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
 
-        Log.d("FragmentFeedbackAreaBar", "bla");
+        Log.d("FragmentFeedbackAreaAv", "bla");
         return v;
     }
 }

@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.victoria.myapplication.ProductHandling.Category;
+
 /**
  * Created by victoria on 01.12.15.
  */
@@ -17,6 +19,7 @@ public class FragmentFeedbackArea extends Fragment implements ActivityOrderingSc
     private TextView mVersionField;
 
     private Fragment fragmentFeedbackAreaTablet;
+    private Fragment fragmentFeedbackAreaAvatar;
 
     private ActivityOrderingScreen.OnIncomingOrderListener onIncomingOrderListener;
 
@@ -59,14 +62,21 @@ public class FragmentFeedbackArea extends Fragment implements ActivityOrderingSc
             fm.beginTransaction().add(R.id.layout_nestedFragment_tablet, fragmentFeedbackAreaTablet).commit();
         }
 
+        fragmentFeedbackAreaAvatar = fm.findFragmentById(R.id.layout_nestedFragment_avatar);
+        if (fragmentFeedbackAreaAvatar == null)
+        {
+            fragmentFeedbackAreaAvatar = new FragmentFeedbackAreaAvatar();
+            fm.beginTransaction().add(R.id.layout_nestedFragment_avatar, fragmentFeedbackAreaAvatar).commit();
+        }
+
     }
 
     @Override
-    public void onIncomingOrder(int id)
+    public void onIncomingOrder(int id, Category category)
     {
         if (fragmentFeedbackAreaTablet != null && fragmentFeedbackAreaTablet instanceof ActivityOrderingScreen.OnIncomingOrderListener)
         {
-            ((ActivityOrderingScreen.OnIncomingOrderListener) fragmentFeedbackAreaTablet).onIncomingOrder(id);
+            ((ActivityOrderingScreen.OnIncomingOrderListener) fragmentFeedbackAreaTablet).onIncomingOrder(id, category);
         }
     }
 }

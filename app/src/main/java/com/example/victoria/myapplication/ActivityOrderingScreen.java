@@ -5,7 +5,11 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-public class ActivityOrderingScreen extends FragmentActivity implements FragmentHealthyProductArea.OnHealthyProductSelectedListener
+import com.example.victoria.myapplication.ProductHandling.Category;
+
+public class ActivityOrderingScreen extends FragmentActivity
+        implements FragmentHealthyProductArea.OnHealthyProductSelectedListener,
+        FragmentUnhealthyProductArea.OnUnhealthyProductSelectedListener
 {
 
     private static final String SELECTED_VERSION = "com.example.android.selected_version";
@@ -52,12 +56,21 @@ public class ActivityOrderingScreen extends FragmentActivity implements Fragment
     {
         if (fragmentFeedbackArea != null && fragmentFeedbackArea instanceof OnIncomingOrderListener)
         {
-            ((OnIncomingOrderListener) fragmentFeedbackArea).onIncomingOrder(id);
+            ((OnIncomingOrderListener) fragmentFeedbackArea).onIncomingOrder(id, Category.healthy);
+        }
+    }
+
+    @Override
+    public void onUnhealthyProductSelected(int id)
+    {
+        if (fragmentFeedbackArea != null && fragmentFeedbackArea instanceof OnIncomingOrderListener)
+        {
+            ((OnIncomingOrderListener) fragmentFeedbackArea).onIncomingOrder(id, Category.unhealthy);
         }
     }
 
     public interface OnIncomingOrderListener
     {
-        public void onIncomingOrder(int id);
+        public void onIncomingOrder(int id, Category category);
     }
 }

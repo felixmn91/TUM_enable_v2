@@ -1,40 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                       android:layout_width="wrap_content"
-                      android:layout_height="wrap_content">
+                      android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/healthyProductContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#228b22"
-        android:orientation="horizontal">
-<!--
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/product_big_salad_quinoa_product_preview"/>
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/product_cheeseburger_product_preview"/>
-
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/product_chicken_mcnuggets_product_preview"/> -->
     </LinearLayout>
 </HorizontalScrollView>

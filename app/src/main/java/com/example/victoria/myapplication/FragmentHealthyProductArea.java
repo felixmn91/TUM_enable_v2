@@ -1,19 +1,17 @@
 package com.example.victoria.myapplication;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.victoria.myapplication.com.example.victoria.ProductHandling.Product;
-import com.example.victoria.myapplication.com.example.victoria.ProductHandling.ProgramLogicSingleton;
+import com.example.victoria.myapplication.ProductHandling.Product;
+import com.example.victoria.myapplication.ProductHandling.ProgramLogicSingleton;
 
 import java.util.ArrayList;
 
@@ -40,51 +38,22 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
         super.onCreate(saverdInstacesState);
     }
 
-    private void initializeImgButtonsRow()
-    {
+    private void initializeImgButtonsRow() {
         imgButtons = new ArrayList<>();
 
         ArrayList<Product> healthyProducts = ProgramLogicSingleton.getInstance().getHealthyProducts();
         int i = 0;
         for (Product p : healthyProducts)
         {
-            ImageButton btnImg = new ImageButton(getActivity());
-            btnImg.setImageResource(p.getPathPicture());
-            btnImg.setAdjustViewBounds(true);
-            btnImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            btnImg.setOnClickListener(this);
-            btnImg.setId(i);
+            CustomButtonProductItem cBtn = new CustomButtonProductItem(getActivity());
+            cBtn.setIdentifier(p.getPathPicture());
+            cBtn.setProductName(p.getName());
+            cBtn.setPrice(p.getPrice());
+            cBtn.setOnClickListener(this);
+            cBtn.setBackground(R.drawable.background_custom_button_healthy_product_item);
+            cBtn.setId(i);
 
-            if (btnImg == null)
-            {
-                Log.d(Tag, "Button ist null");
-            }
-
-            if (healthyProductContainer == null)
-            {
-                Log.d(Tag, "healthyProductContainer ist null");
-            }
-
-            healthyProductContainer.addView(btnImg);
-            i++;
-        }
-    }
-
-    private void initializeImgButtonsRow2() {
-        imgButtons = new ArrayList<>();
-
-        ArrayList<Product> healthyProducts = ProgramLogicSingleton.getInstance().getHealthyProducts();
-        int i = 0;
-        for (Product p : healthyProducts)
-        {
-            ImageButton btnImg = new ImageButton(getActivity());
-            btnImg.setImageResource(p.getPathPicture());
-            btnImg.setAdjustViewBounds(false);
-            btnImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            btnImg.setOnClickListener(this);
-            btnImg.setId(i);
-
-            healthyProductContainer.addView(btnImg);
+            healthyProductContainer.addView(cBtn);
 
             i++;
         }
@@ -121,6 +90,8 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
         Log.d(Tag, "Id: " + id);
     }
 
+    // Interface, das die Kommunikation des Fragments mit der Activity ermöglicht, wenn auf ein
+    // Produkt geklickt wurde
     public interface OnHealthyProductSelectedListener
     {
         public void onHealthyProductSelected(int id);

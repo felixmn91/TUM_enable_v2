@@ -1,4 +1,4 @@
-package com.example.victoria.myapplication.com.example.victoria.ProductHandling;
+package com.example.victoria.myapplication.ProductHandling;
 
 /**
  * Created by Lennart Mittag on 05.12.2015.

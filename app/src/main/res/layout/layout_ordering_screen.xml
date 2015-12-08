@@ -5,27 +5,33 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:padding="4dp"
+    android:orientation="vertical"
+    android:background="#ffffe0">
 
     <FrameLayout
         android:id="@+id/fragmentContainer_feedback_area"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_marginBottom="4dp">
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/fragmentContainer_healthy_product_area"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp">
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/fragmentContainer_unhealthy_product_area"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_marginTop="4dp">
     </FrameLayout>
 
 </LinearLayout>
