@@ -54,6 +54,8 @@ public class ProgramLogicSingleton
         healthyProducts.add(new Product("Chicken Nuggets", 3.19, 370.0, Category.healthy, R.drawable.product_chicken_mcnuggets_product_preview));
         healthyProducts.add(new Product("Coca Cola Light", 1.49, 60.4, Category.healthy, R.drawable.product_coca_cola_light_product_preview));
 
+        //Kommentar
+
 
         unhealthyProducts = new ArrayList<>();
 
