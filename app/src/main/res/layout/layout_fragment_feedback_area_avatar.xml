@@ -7,9 +7,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/imageView"
+        android:id="@+id/imageAvatar"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
-        android:src="@drawable/smiley_ok"
+        android:src="@drawable/smiley_great"
         android:layout_gravity="center_horizontal"/>
 </LinearLayout>

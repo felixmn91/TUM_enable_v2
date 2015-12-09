@@ -11,6 +11,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="FeedbackBar"
-        android:id="@+id/textView"
+        android:id="@+id/txtOben"
         android:layout_gravity="center_horizontal"/>
 </LinearLayout>

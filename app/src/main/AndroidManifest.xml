@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.victoria.myapplication" >
+    package="enable.tum.tum_enable_app">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+
         <activity
             android:name=".ActivityStartScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,11 +23,8 @@
             android:name=".ActivityOrderingScreen"
             android:label="@string/title_activity_launch_terminal"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
-</manifest><!--
- Ich habe Portait orientation festgesetzt, da wir nur diese Orientierung
-brauchen und somit uns die Erstellung eines Landscape screens spaaren
--->
+</manifest>
