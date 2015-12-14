@@ -6,5 +6,6 @@
     <string name="no_avatar_nudging">Avatar off | Nudging: on</string>
     <string name="avatar_no_nudging">Avatar on | Nudging: off</string>
     <string name="avatar_nudging">Avatar on | Nudging: on</string>
+    <string name="strTestVersion">TEST_VERSION</string>
 
 </resources>

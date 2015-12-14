@@ -41,7 +41,7 @@ public class FragmentFeedbackAreaBar extends Fragment implements IOrderObserver 
     {
         super.onActivityCreated(savedInstanceState);
 
-        txtViewActualKcal = (TextView) getActivity().findViewById(R.id.txtOben);
+        txtViewActualKcal = (TextView) getActivity().findViewById(R.id.txtKcal);
 
         feedbackBar = (FeedbackBarView) getActivity().findViewById(R.id.feedbackbar);
         feedbackBar.setSpectrumMaxValue(1600);

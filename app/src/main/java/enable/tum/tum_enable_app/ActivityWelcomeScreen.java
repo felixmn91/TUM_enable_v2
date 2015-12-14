@@ -22,10 +22,10 @@ public class ActivityWelcomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent current = getIntent();
-                TestVersion version = (TestVersion) current.getSerializableExtra("TEST_VERSION");
+                TestVersion version = (TestVersion) current.getSerializableExtra(getResources().getString(R.string.strTestVersion));
 
                 Intent newIntent = new Intent(ActivityWelcomeScreen.this, ActivityOrderingScreen.class);
-                newIntent.putExtra("TEST_VERSION", version);
+                newIntent.putExtra(getResources().getString(R.string.strTestVersion), version);
                 startActivity(newIntent);
             }
         });

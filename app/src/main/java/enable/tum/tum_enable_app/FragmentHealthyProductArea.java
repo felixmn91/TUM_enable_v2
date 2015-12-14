@@ -2,6 +2,7 @@ package enable.tum.tum_enable_app;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,8 +39,9 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
         super.onCreate(saverdInstacesState);
     }
 
-    private void initializeImgButtonsRow()
+    private void initializeImgButtonsRow(TestVersion testVersion)
     {
+        Log.d(Tag, "" + testVersion);
         imgButtons = new ArrayList<>();
 
         ArrayList<Product> healthyProducts = ProgramLogicSingleton.getInstance().getHealthyProducts();
@@ -51,7 +53,13 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
             cBtn.setProductName(p.getName());
             cBtn.setPrice(p.getPrice());
             cBtn.setOnClickListener(this);
-            cBtn.setBackgroundResourceIdentifier(R.drawable.background_custom_button_healthy_product_item);
+            if (testVersion == TestVersion.avatar_off_nudging_on || testVersion == TestVersion.avatar_on_nudging_on)
+            {
+                cBtn.setBackgroundResourceIdentifier(R.drawable.background_custom_button_healthy_product_item);
+            } else
+            {
+                cBtn.setBackgroundResourceIdentifier(R.drawable.background_custom_button_unhealthy_product_item);
+            }
             cBtn.setId(i);
             cBtn.setTag(p);
 
@@ -64,7 +72,8 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
 
     //You Inflate Fragment in onCreateView
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstaceState)
     {
         View v = inflater.inflate(R.layout.layout_healthy_product_area, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
 
@@ -77,10 +86,20 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
     {
         super.onActivityCreated(savedInstanceState);
 
+        TestVersion testVersion = (TestVersion) getActivity().getIntent().getSerializableExtra(getResources().getString(R.string.strTestVersion));
+
         onHealthyProductSelectedListener = (OnHealthyProductSelectedListener) getActivity();
 
         healthyProductContainer = (LinearLayout) getActivity().findViewById(R.id.healthyProductContainer);
-        initializeImgButtonsRow();
+        if (testVersion == TestVersion.avatar_off_nudging_on || testVersion == TestVersion.avatar_on_nudging_on)
+        {
+            healthyProductContainer.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.white));
+        } else
+        {
+            healthyProductContainer.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.black));
+        }
+
+        initializeImgButtonsRow(testVersion);
     }
 
     @Override

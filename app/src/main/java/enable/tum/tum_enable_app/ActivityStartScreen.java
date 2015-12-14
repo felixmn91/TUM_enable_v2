@@ -73,7 +73,7 @@ public class ActivityStartScreen extends AppCompatActivity {
 
     public void mLaunchTerminal(TestVersion version) {
         Intent i = new Intent(ActivityStartScreen.this, ActivityWelcomeScreen.class);
-        i.putExtra("TEST_VERSION", version);
+        i.putExtra(getResources().getString(R.string.strTestVersion), version);
         startActivity(i);
     }
 }

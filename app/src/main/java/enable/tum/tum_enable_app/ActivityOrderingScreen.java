@@ -25,7 +25,7 @@ public class ActivityOrderingScreen extends FragmentActivity
         setContentView(R.layout.layout_ordering_screen);
 
         Intent i = getIntent();
-        TestVersion version = (TestVersion) i.getSerializableExtra("TEST_VERSION");
+        TestVersion version = (TestVersion) i.getSerializableExtra(getResources().getString(R.string.strTestVersion));
         Log.d(TAG, version + "");
 
         FragmentManager fm = getFragmentManager();
