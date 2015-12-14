@@ -48,14 +48,7 @@ public class ProgramLogicSingleton implements IOrderObservable
 
     public double getPriceOfOrder()
     {
-        double entirePrice = 0;
-
-        for (Product p : order)
-        {
-            entirePrice += p.getPrice();
-        }
-
-        return entirePrice;
+        return actualPriceOfOrder;
     }
 
     public void addProductToActualOrder(Product product)
