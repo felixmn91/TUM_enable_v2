@@ -2,7 +2,6 @@ package enable.tum.tum_enable_app;
 
 import android.app.DialogFragment;
 import android.app.Fragment;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
@@ -23,7 +22,7 @@ import java.io.OutputStreamWriter;
 import enable.tum.tum_enable_app.ProductHandling.Category;
 import enable.tum.tum_enable_app.ProductHandling.Product;
 import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
-import enable.tum.tum_enable_app.ProductHandling.TestrunData;
+import enable.tum.tum_enable_app.ProductHandling.TestRunData;
 
 /**
  * Created by Lennart Mittag on 05.12.2015.
@@ -70,55 +69,15 @@ public class FragmentFeedbackAreaTablet extends Fragment
         gesamtpreis = (TextView) getActivity().findViewById(R.id.gesamtpreis);
 
         bezahlen = (Button) getActivity().findViewById(R.id.bezahlen);
-        bezahlen.setOnClickListener(new View.OnClickListener()
-        {
+        bezahlen.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Log.d(TAG, "on Click bezahlen");
 
                 DialogFragment bestätigungBezahlen = new PaymentDialogFragment();
                 bestätigungBezahlen.show(getFragmentManager(), "payment");
-
-                writeTestrunDataToFile();
             }
         });
-    }
-
-    private void writeTestrunDataToFile()
-    {
-        String filename = getResources().getString(R.string.filename);
-
-        ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
-        TestrunData test = new TestrunData(instance.getOrder());
-
-        String string = test.testrunDataToString();
-
-        //This will get the SD Card directory and create a folder named MyFiles in it.
-        File sdCard = Environment.getExternalStorageDirectory();
-        File directory = new File(sdCard.getAbsolutePath() + "/TestRunData");
-        directory.mkdirs();
-
-        //Now create the file in the above directory and write the contents into it
-        File file = new File(directory, "data.txt");
-        FileOutputStream fOut = null;
-        try
-        {
-            fOut = new FileOutputStream(file, true);
-            OutputStreamWriter osw = new OutputStreamWriter(fOut);
-            osw.append("\n" + string);
-
-            osw.flush();
-            osw.close();
-            fOut.close();
-
-        } catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     @Override

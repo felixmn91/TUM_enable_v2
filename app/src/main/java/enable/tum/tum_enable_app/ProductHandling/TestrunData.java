@@ -5,14 +5,14 @@ import java.util.ArrayList;
 /**
  * Created by Felix Naser on 14.12.2015.
  */
-public class TestrunData {
+public class TestRunData {
 
     private static int id = 0;
 
     private ArrayList<Product> order;
     // private int id;
 
-    public TestrunData(ArrayList<Product> order) {
+    public TestRunData(ArrayList<Product> order) {
         this.order = order;
         id++;
     }

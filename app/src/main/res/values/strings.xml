@@ -7,6 +7,6 @@
     <string name="avatar_no_nudging">Avatar on | Nudging: off</string>
     <string name="avatar_nudging">Avatar on | Nudging: on</string>
     <string name="strTestVersion">TEST_VERSION</string>
-    <string name="filename">/storage/emulated/0/TestrunData/data.txt</string>
+    <string name="filename">data.txt</string>
 
 </resources>
