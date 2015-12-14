@@ -44,7 +44,7 @@ public class CustomButtonProductItem extends LinearLayout
         int imgIdentifier = a.getResourceId(R.styleable.CustomButton_img_identifier, 0);
 
         txtOben.setText(productName);
-        txtUnten.setText("Price: " + String.format("%1$,.2f", price));
+        txtUnten.setText("Preis: " + String.format("%1$,.2f", price));
         imgBtn.setImageResource(imgIdentifier);
         imgBtn.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         imgBtn.setAdjustViewBounds(true);
