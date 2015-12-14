@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import enable.tum.tum_enable_app.ProductHandling.Product;
@@ -20,6 +21,10 @@ public class PaymentDialogFragment extends DialogFragment {
         builder.setMessage("Ihre Bestellung:\n" + listAllProducts())
                 .setPositiveButton("bestätigen", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        ProgramLogicSingleton.getInstance().resetProgrammLogicSingleton();
+
+                        Intent newIntent = new Intent(getActivity(), ActivityStartScreen.class);
+                        startActivity(newIntent);
                     }
                 })
                 .setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {

@@ -149,4 +149,9 @@ public class ProgramLogicSingleton implements IOrderObservable
             orderObserver.onOrderChange();
         }
     }
+
+    public void resetProgrammLogicSingleton()
+    {
+        ourInstance = new ProgramLogicSingleton();
+    }
 }

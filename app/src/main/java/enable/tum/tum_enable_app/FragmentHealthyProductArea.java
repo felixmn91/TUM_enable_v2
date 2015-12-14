@@ -11,8 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import enable.tum.tum_enable_app.ProductHandling.Product;
 import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
@@ -53,7 +51,7 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
             cBtn.setProductName(p.getName());
             cBtn.setPrice(p.getPrice());
             cBtn.setOnClickListener(this);
-            cBtn.setBackground(R.drawable.background_custom_button_healthy_product_item);
+            cBtn.setBackgroundResourceIdentifier(R.drawable.background_custom_button_healthy_product_item);
             cBtn.setId(i);
             cBtn.setTag(p);
 

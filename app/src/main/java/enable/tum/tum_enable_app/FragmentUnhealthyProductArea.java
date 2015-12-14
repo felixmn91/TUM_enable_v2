@@ -46,7 +46,7 @@ public class FragmentUnhealthyProductArea extends Fragment implements View.OnCli
             cBtn.setProductName(p.getName());
             cBtn.setPrice(p.getPrice());
             cBtn.setOnClickListener(this);
-            cBtn.setBackground(R.drawable.background_custom_button_unhealthy_product_item);
+            cBtn.setBackgroundResourceIdentifier(R.drawable.background_custom_button_unhealthy_product_item);
             cBtn.setId(i);
 
             unhealthyProductContainer.addView(cBtn);
