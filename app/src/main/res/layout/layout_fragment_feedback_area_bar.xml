@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:weightSum="1">
+              android:orientation="vertical"
+              android:weightSum="20">
 
+    <enable.tum.tum_enable_app.FeedbackBarView
+        android:id="@+id/feedbackbar"
+        android:layout_width="150dip"
+        android:layout_height="0dip"
+        android:layout_weight="17"
+        android:layout_margin="5dip"
+        android:paddingTop="10dip"
+        android:paddingBottom="5dip"
+        android:layout_gravity="center"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="FeedbackBar"
         android:id="@+id/txtOben"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="3"
+        android:layout_margin="5dip"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="Kcal: 900"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
 </LinearLayout>

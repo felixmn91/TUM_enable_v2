@@ -5,4 +5,5 @@
         <attr name="img_identifier" format="reference" />
         <attr name="product_price" format="float" />
     </declare-styleable>
+    <dimen name="myFontSize">10sp</dimen>
 </resources>

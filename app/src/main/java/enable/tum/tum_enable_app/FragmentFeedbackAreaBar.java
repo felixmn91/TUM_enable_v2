@@ -14,6 +14,8 @@ import android.widget.TextView;
 public class FragmentFeedbackAreaBar extends Fragment {
     private TextView mVersionField;
 
+    private FeedbackBarView feedbackBar;
+
     //onCreate only Configures the fragment instance
     @Override
     public void onCreate(Bundle saverdInstacesState) {
@@ -29,5 +31,17 @@ public class FragmentFeedbackAreaBar extends Fragment {
 
         Log.d("FragmentFeedbackAreaBar", "bla");
         return v;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+
+        feedbackBar = (FeedbackBarView) getActivity().findViewById(R.id.feedbackbar);
+        feedbackBar.setSpectrumMaxValue(1600);
+        feedbackBar.setSpectrumThresholdValue(800);
+        feedbackBar.calculateValues();
+        feedbackBar.setSpectrumActualValue(900);
     }
 }
