@@ -32,13 +32,13 @@ public class PaymentDialogFragment extends DialogFragment {
 
     private String listAllProducts() {
         String list = "";
-        ProgramLogicSingleton s = ProgramLogicSingleton.getOurInstance();
+        ProgramLogicSingleton s = ProgramLogicSingleton.getInstance();
 
         for (Product p : s.getOrder()) {
             list += p.getName() + "\n";
         }
 
-        list += s.getPriceOfOrder() + "\u20ac";
+        list += s.getPriceOfOrderAsFormattedString() + "\u20ac";
 
         return list;
     }

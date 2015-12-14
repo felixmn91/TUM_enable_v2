@@ -11,8 +11,7 @@ import enable.tum.tum_enable_app.R;
 /**
  * Created by Lennart Mittag on 05.12.2015.
  */
-public class ProgramLogicSingleton implements IOrderObservable
-{
+public class ProgramLogicSingleton implements IOrderObservable {
     private static ProgramLogicSingleton ourInstance = new ProgramLogicSingleton();
 
     private List<IOrderObserver> registeredObservers;
@@ -24,44 +23,40 @@ public class ProgramLogicSingleton implements IOrderObservable
     private double actualPriceOfOrder = 0f;
     private double actualKcalOfOrder = 0f;
 
-    private ProgramLogicSingleton()
-    {
+    private ProgramLogicSingleton() {
         initializeArrays();
         registeredObservers = new LinkedList<>();
     }
 
-    public static ProgramLogicSingleton getInstance()
-    {
+    public static ProgramLogicSingleton getInstance() {
         return ourInstance;
     }
 
     // TODO Methode entfernen
-    public ArrayList<Product> getOrder()
-    {
+    public ArrayList<Product> getOrder() {
         return order;
     }
 
-    public double getKcalOfOrder()
-    {
+    public double getKcalOfOrder() {
         return actualKcalOfOrder;
     }
 
-    public double getPriceOfOrder()
-    {
+    public double getPriceOfOrder() {
         double entirePrice = 0;
 
-        for (Product p : order)
-        {
+        for (Product p : order) {
             entirePrice += p.getPrice();
         }
 
         return entirePrice;
     }
 
-    public void addProductToActualOrder(Product product)
-    {
-        if (order.size() < 6)
-        {
+    public String getPriceOfOrderAsFormattedString() {
+        return Math.round(actualPriceOfOrder * 100.0) / 100.0 + "";
+    }
+
+    public void addProductToActualOrder(Product product) {
+        if (order.size() < 6) {
             order.add(product);
         }
 
@@ -73,10 +68,8 @@ public class ProgramLogicSingleton implements IOrderObservable
         informObserverChangeHasOccurred();
     }
 
-    public void removeProductFromActualOrder(Product product)
-    {
-        if (order.contains(product))
-        {
+    public void removeProductFromActualOrder(Product product) {
+        if (order.contains(product)) {
             order.remove(product);
         }
 
@@ -86,26 +79,21 @@ public class ProgramLogicSingleton implements IOrderObservable
         informObserverChangeHasOccurred();
     }
 
-    private void updateActualOrderPrice()
-    {
+    private void updateActualOrderPrice() {
         actualPriceOfOrder = 0d;
-        for (Product p : order)
-        {
+        for (Product p : order) {
             actualPriceOfOrder += p.getPrice();
         }
     }
 
-    private void updateActualOrderKcal()
-    {
+    private void updateActualOrderKcal() {
         actualKcalOfOrder = 0d;
-        for (Product p : order)
-        {
+        for (Product p : order) {
             actualKcalOfOrder += p.getKcal();
         }
     }
 
-    private void initializeArrays()
-    {
+    private void initializeArrays() {
         order = new ArrayList<>();
 
         healthyProducts = new ArrayList<>();
@@ -122,27 +110,22 @@ public class ProgramLogicSingleton implements IOrderObservable
         unhealthyProducts.add(new Product("Mc Flurry", 2.29, 390.7, Category.unhealthy, R.drawable.product_mcflurry__smarties__product_preview));
     }
 
-    public ArrayList<Product> getUnhealthyProducts()
-    {
+    public ArrayList<Product> getUnhealthyProducts() {
         return unhealthyProducts;
     }
 
-    public ArrayList<Product> getHealthyProducts()
-    {
+    public ArrayList<Product> getHealthyProducts() {
         return healthyProducts;
     }
 
     @Override
-    public void registerAsObserver(IOrderObserver observer)
-    {
+    public void registerAsObserver(IOrderObserver observer) {
         registeredObservers.add(observer);
     }
 
     @Override
-    public void informObserverChangeHasOccurred()
-    {
-        for (IOrderObserver orderObserver : registeredObservers)
-        {
+    public void informObserverChangeHasOccurred() {
+        for (IOrderObserver orderObserver : registeredObservers) {
             orderObserver.onOrderChange();
         }
     }

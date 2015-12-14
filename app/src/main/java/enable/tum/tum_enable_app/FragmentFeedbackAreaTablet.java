@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import enable.tum.tum_enable_app.ProductHandling.Category;
 import enable.tum.tum_enable_app.ProductHandling.Product;
 import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
@@ -140,6 +138,6 @@ public class FragmentFeedbackAreaTablet extends Fragment
     public void updatePrice() {
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
         TextView gesamtpreis = (TextView) getActivity().findViewById(R.id.gesamtpreis);
-        gesamtpreis.setText("Gesamtpreis: " + Math.round(instance.getPriceOfOrder() * 100.0) / 100.0 + "€");
+        gesamtpreis.setText("Gesamtpreis: " + instance.getPriceOfOrderAsFormattedString() + "€");
     }
 }
