@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import enable.tum.tum_enable_app.ProductHandling.Category;
 import enable.tum.tum_enable_app.ProductHandling.Product;
@@ -26,7 +31,8 @@ import enable.tum.tum_enable_app.ProductHandling.TestrunData;
 public class FragmentFeedbackAreaTablet extends Fragment
         implements View.OnClickListener,
         ActivityOrderingScreen.OnIncomingOrderListener,
-        IOrderObserver {
+        IOrderObserver
+{
 
     private static final String TAG = "FragmentFAT";
 
@@ -35,15 +41,18 @@ public class FragmentFeedbackAreaTablet extends Fragment
     private TextView gesamtpreis;
 
     @Override
-    public void onCreate(Bundle saverdInstacesState) {
+    public void onCreate(Bundle saverdInstacesState)
+    {
         super.onCreate(saverdInstacesState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState)
+    {
         View v = inflater.inflate(R.layout.layout_fragment_feedback_area_tablet, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
 
-        for (int i = 0; i < actualTablet.length; i++) {
+        for (int i = 0; i < actualTablet.length; i++)
+        {
             actualTablet[i] = false;
         }
 
@@ -52,7 +61,8 @@ public class FragmentFeedbackAreaTablet extends Fragment
     }
 
     @Override
-    public void onActivityCreated(final Bundle savedInstanceState) {
+    public void onActivityCreated(final Bundle savedInstanceState)
+    {
         super.onActivityCreated(savedInstanceState);
 
         ProgramLogicSingleton.getInstance().registerAsObserver(this);
@@ -60,9 +70,11 @@ public class FragmentFeedbackAreaTablet extends Fragment
         gesamtpreis = (TextView) getActivity().findViewById(R.id.gesamtpreis);
 
         bezahlen = (Button) getActivity().findViewById(R.id.bezahlen);
-        bezahlen.setOnClickListener(new View.OnClickListener() {
+        bezahlen.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Log.d(TAG, "on Click bezahlen");
 
                 DialogFragment bestätigungBezahlen = new PaymentDialogFragment();
@@ -73,33 +85,54 @@ public class FragmentFeedbackAreaTablet extends Fragment
         });
     }
 
-    private void writeTestrunDataToFile() {
+    private void writeTestrunDataToFile()
+    {
         String filename = getResources().getString(R.string.filename);
 
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
         TestrunData test = new TestrunData(instance.getOrder());
 
         String string = test.testrunDataToString();
-        FileOutputStream outputStream;
 
-        try {
-            outputStream = getActivity().openFileOutput(filename, Context.MODE_APPEND);
-            outputStream.write(string.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
+        //This will get the SD Card directory and create a folder named MyFiles in it.
+        File sdCard = Environment.getExternalStorageDirectory();
+        File directory = new File(sdCard.getAbsolutePath() + "/TestRunData");
+        directory.mkdirs();
+
+        //Now create the file in the above directory and write the contents into it
+        File file = new File(directory, "data.txt");
+        FileOutputStream fOut = null;
+        try
+        {
+            fOut = new FileOutputStream(file, true);
+            OutputStreamWriter osw = new OutputStreamWriter(fOut);
+            osw.append("\n" + string);
+
+            osw.flush();
+            osw.close();
+            fOut.close();
+
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void onIncomingOrder(int id, Category category) {
+    public void onIncomingOrder(int id, Category category)
+    {
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
 
         Product product = null;
 
-        if (category == Category.healthy) {
+        if (category == Category.healthy)
+        {
             product = instance.getHealthyProducts().get(id);
-        } else {
+        } else
+        {
             product = instance.getUnhealthyProducts().get(id);
         }
 
@@ -107,25 +140,32 @@ public class FragmentFeedbackAreaTablet extends Fragment
 
         ImageButton btnImg = null;
 
-        if (!actualTablet[0]) {
+        if (!actualTablet[0])
+        {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button);
             actualTablet[0] = true;
-        } else if (!actualTablet[1]) {
+        } else if (!actualTablet[1])
+        {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button2);
             actualTablet[1] = true;
-        } else if (!actualTablet[2]) {
+        } else if (!actualTablet[2])
+        {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button3);
             actualTablet[2] = true;
-        } else if (!actualTablet[3]) {
+        } else if (!actualTablet[3])
+        {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button4);
             actualTablet[3] = true;
-        } else if (!actualTablet[4]) {
+        } else if (!actualTablet[4])
+        {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button5);
             actualTablet[4] = true;
-        } else if (!actualTablet[5]) {
+        } else if (!actualTablet[5])
+        {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button6);
             actualTablet[5] = true;
-        } else {
+        } else
+        {
             return;
         }
 
@@ -138,24 +178,31 @@ public class FragmentFeedbackAreaTablet extends Fragment
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         ImageButton imgBtn = (ImageButton) v;
         imgBtn.setImageResource(R.drawable.mcdonalds_golden_arches);
         imgBtn.setBackgroundColor(Color.WHITE);
         imgBtn.setOnClickListener(null);
         imgBtn.invalidate();
 
-        if (v.getId() == R.id.button) {
+        if (v.getId() == R.id.button)
+        {
             actualTablet[0] = false;
-        } else if (v.getId() == R.id.button2) {
+        } else if (v.getId() == R.id.button2)
+        {
             actualTablet[1] = false;
-        } else if (v.getId() == R.id.button3) {
+        } else if (v.getId() == R.id.button3)
+        {
             actualTablet[2] = false;
-        } else if (v.getId() == R.id.button4) {
+        } else if (v.getId() == R.id.button4)
+        {
             actualTablet[3] = false;
-        } else if (v.getId() == R.id.button5) {
+        } else if (v.getId() == R.id.button5)
+        {
             actualTablet[4] = false;
-        } else if (v.getId() == R.id.button6) {
+        } else if (v.getId() == R.id.button6)
+        {
             actualTablet[5] = false;
         }
 
@@ -165,7 +212,8 @@ public class FragmentFeedbackAreaTablet extends Fragment
     }
 
     @Override
-    public void onOrderChange() {
+    public void onOrderChange()
+    {
         gesamtpreis.setText("Gesamtpreis: " + ProgramLogicSingleton.getInstance().getPriceOfOrderAsFormattedString() + "€");
     }
 }
