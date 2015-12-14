@@ -18,11 +18,9 @@ import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
 /**
  * Created by victoria on 01.12.15.
  */
-public class FragmentFeedbackArea extends Fragment implements ActivityOrderingScreen.OnIncomingOrderListener, IOrderObserver, IOrderObservable
+public class FragmentFeedbackArea extends Fragment implements ActivityOrderingScreen.OnIncomingOrderListener
 {
     private TextView mVersionField;
-
-    private List<IOrderObserver> registeredObserver;
 
     private Fragment fragmentFeedbackAreaBar;
     private Fragment fragmentFeedbackAreaTablet;
@@ -52,9 +50,6 @@ public class FragmentFeedbackArea extends Fragment implements ActivityOrderingSc
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
-        registeredObserver = new LinkedList<>();
-        ProgramLogicSingleton.getInstance().registerAsObserver(this);
 
         // Initialize and start Fragments of the top row
         FragmentManager fm = getFragmentManager();
@@ -88,28 +83,6 @@ public class FragmentFeedbackArea extends Fragment implements ActivityOrderingSc
         if (fragmentFeedbackAreaTablet != null && fragmentFeedbackAreaTablet instanceof ActivityOrderingScreen.OnIncomingOrderListener)
         {
             ((ActivityOrderingScreen.OnIncomingOrderListener) fragmentFeedbackAreaTablet).onIncomingOrder(id, category);
-            ((ActivityOrderingScreen.OnIncomingOrderListener) fragmentFeedbackAreaAvatar).onIncomingOrder(id, category);
         }
-    }
-
-    @Override
-    public void registerAsObserver(IOrderObserver observer)
-    {
-        registeredObserver.add(observer);
-    }
-
-    @Override
-    public void informObserverChangeHasOccurred()
-    {
-        for (IOrderObserver orderObserver : registeredObserver)
-        {
-            orderObserver.onOrderChange();
-        }
-    }
-
-    @Override
-    public void onOrderChange()
-    {
-        informObserverChangeHasOccurred();
     }
 }
