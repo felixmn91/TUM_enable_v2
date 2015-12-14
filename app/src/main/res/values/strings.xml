@@ -2,9 +2,9 @@
     <string name="app_name">TUM_Enable_App</string>
 
     <string name="question_text">Wählen Sie eine Test-Version</string>
-    <string name="no_avatar_no_nudging">Standard Version</string>
-    <string name="no_avatar_nudging">Nur Nudging</string>
-    <string name="avatar_no_nudging">Nur Avatar</string>
-    <string name="avatar_nudging">Kombinierte Version</string>
-    <string name="title_activity_launch_terminal">LaunchTerminal</string>
+    <string name="no_avatar_no_nudging">Avatar off | Nudging: on</string>
+    <string name="no_avatar_nudging">Avatar off | Nudging: on</string>
+    <string name="avatar_no_nudging">Avatar on | Nudging: off</string>
+    <string name="avatar_nudging">Avatar on | Nudging: on</string>
+
 </resources>
