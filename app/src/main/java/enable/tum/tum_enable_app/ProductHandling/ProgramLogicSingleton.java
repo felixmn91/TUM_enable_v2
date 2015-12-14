@@ -1,64 +1,111 @@
 package enable.tum.tum_enable_app.ProductHandling;
 
-import enable.tum.tum_enable_app.R;
-
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import enable.tum.tum_enable_app.IOrderObservable;
+import enable.tum.tum_enable_app.IOrderObserver;
+import enable.tum.tum_enable_app.R;
 
 /**
  * Created by Lennart Mittag on 05.12.2015.
  */
-public class ProgramLogicSingleton {
+public class ProgramLogicSingleton implements IOrderObservable
+{
     private static ProgramLogicSingleton ourInstance = new ProgramLogicSingleton();
+
+    private List<IOrderObserver> registeredObservers;
 
     private ArrayList<Product> healthyProducts;
     private ArrayList<Product> unhealthyProducts;
     private ArrayList<Product> order;
 
-    private ProgramLogicSingleton() {
+    private double actualPriceOfOrder = 0f;
+    private double actualKcalOfOrder = 0f;
+
+    private ProgramLogicSingleton()
+    {
         initializeArrays();
+        registeredObservers = new LinkedList<>();
     }
 
-    public static ProgramLogicSingleton getOurInstance() {
+    public static ProgramLogicSingleton getInstance()
+    {
         return ourInstance;
     }
 
-    public static void setOurInstance(ProgramLogicSingleton ourInstance) {
-        ProgramLogicSingleton.ourInstance = ourInstance;
-    }
-
-    public static ProgramLogicSingleton getInstance() {
-        return ourInstance;
-    }
-
-    public ArrayList<Product> getOrder() {
+    // TODO Methode entfernen
+    public ArrayList<Product> getOrder()
+    {
         return order;
     }
 
-    public double getKcalOfOrder() {
-        double entireKcal = 0;
-
-        for (Product p : order) {
-            entireKcal += p.getKcal();
-        }
-
-        return entireKcal;
+    public double getKcalOfOrder()
+    {
+        return actualKcalOfOrder;
     }
 
-    public double getPriceOfOrder() {
+    public double getPriceOfOrder()
+    {
         double entirePrice = 0;
 
-        for (Product p : order) {
+        for (Product p : order)
+        {
             entirePrice += p.getPrice();
         }
 
         return entirePrice;
     }
 
-    public void setOrder(ArrayList<Product> order) {
-        this.order = order;
+    public void addProductToActualOrder(Product product)
+    {
+        if (order.size() < 6)
+        {
+            order.add(product);
+        }
+
+        updateActualOrderPrice();
+        updateActualOrderKcal();
+
+        // TODO Methodensignatur muss geändert werden zu privat.
+        // TODO Methode muss aus Interface IOrderObservable entfernt werden
+        informObserverChangeHasOccurred();
     }
 
-    private void initializeArrays() {
+    public void removeProductFromActualOrder(Product product)
+    {
+        if (order.contains(product))
+        {
+            order.remove(product);
+        }
+
+        updateActualOrderPrice();
+        updateActualOrderKcal();
+
+        informObserverChangeHasOccurred();
+    }
+
+    private void updateActualOrderPrice()
+    {
+        actualPriceOfOrder = 0d;
+        for (Product p : order)
+        {
+            actualPriceOfOrder += p.getPrice();
+        }
+    }
+
+    private void updateActualOrderKcal()
+    {
+        actualKcalOfOrder = 0d;
+        for (Product p : order)
+        {
+            actualKcalOfOrder += p.getKcal();
+        }
+    }
+
+    private void initializeArrays()
+    {
         order = new ArrayList<>();
 
         healthyProducts = new ArrayList<>();
@@ -75,19 +122,28 @@ public class ProgramLogicSingleton {
         unhealthyProducts.add(new Product("Mc Flurry", 2.29, 390.7, Category.unhealthy, R.drawable.product_mcflurry__smarties__product_preview));
     }
 
-    public ArrayList<Product> getUnhealthyProducts() {
+    public ArrayList<Product> getUnhealthyProducts()
+    {
         return unhealthyProducts;
     }
 
-    public void setUnhealthyProducts(ArrayList<Product> unhealthyProducts) {
-        this.unhealthyProducts = unhealthyProducts;
-    }
-
-    public ArrayList<Product> getHealthyProducts() {
+    public ArrayList<Product> getHealthyProducts()
+    {
         return healthyProducts;
     }
 
-    public void setHealthyProducts(ArrayList<Product> healthyProducts) {
-        this.healthyProducts = healthyProducts;
+    @Override
+    public void registerAsObserver(IOrderObserver observer)
+    {
+        registeredObservers.add(observer);
+    }
+
+    @Override
+    public void informObserverChangeHasOccurred()
+    {
+        for (IOrderObserver orderObserver : registeredObservers)
+        {
+            orderObserver.onOrderChange();
+        }
     }
 }

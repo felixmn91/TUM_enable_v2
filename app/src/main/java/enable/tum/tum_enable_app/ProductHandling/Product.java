@@ -9,6 +9,7 @@ public class Product {
     private double kcal;
     private Category category;
     private int pathPicture;
+    private int uniqueIdentifier;
 
     public Product(String pName, double pPrice, double pKcal, Category pCategory, int pPathPicture) {
         this.name = pName;

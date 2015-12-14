@@ -10,15 +10,18 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import enable.tum.tum_enable_app.ProductHandling.Product;
 import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
-
-import java.util.ArrayList;
 
 /**
  * Created by Lennart Mittag on 05.12.2015.
  */
-public class FragmentHealthyProductArea extends Fragment implements View.OnClickListener {
+public class FragmentHealthyProductArea extends Fragment implements View.OnClickListener
+{
     public static final String Tag = "FragmentHPA";
 
     private TextView mVersionField;
@@ -32,16 +35,19 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
 
     //onCreate only Configures the fragment instance
     @Override
-    public void onCreate(Bundle saverdInstacesState) {
+    public void onCreate(Bundle saverdInstacesState)
+    {
         super.onCreate(saverdInstacesState);
     }
 
-    private void initializeImgButtonsRow() {
+    private void initializeImgButtonsRow()
+    {
         imgButtons = new ArrayList<>();
 
         ArrayList<Product> healthyProducts = ProgramLogicSingleton.getInstance().getHealthyProducts();
         int i = 0;
-        for (Product p : healthyProducts) {
+        for (Product p : healthyProducts)
+        {
             CustomButtonProductItem cBtn = new CustomButtonProductItem(getActivity());
             cBtn.setIdentifier(p.getPathPicture());
             cBtn.setProductName(p.getName());
@@ -49,6 +55,7 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
             cBtn.setOnClickListener(this);
             cBtn.setBackground(R.drawable.background_custom_button_healthy_product_item);
             cBtn.setId(i);
+            cBtn.setTag(p);
 
             healthyProductContainer.addView(cBtn);
 
@@ -59,7 +66,8 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
 
     //You Inflate Fragment in onCreateView
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState)
+    {
         View v = inflater.inflate(R.layout.layout_healthy_product_area, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
 
         Log.d(Tag, "in onCreateView");
@@ -67,7 +75,8 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
         super.onActivityCreated(savedInstanceState);
 
         onHealthyProductSelectedListener = (OnHealthyProductSelectedListener) getActivity();
@@ -77,7 +86,8 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         int id = v.getId();
         onHealthyProductSelectedListener.onHealthyProductSelected(id);
 
@@ -86,7 +96,8 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
 
     // Interface, das die Kommunikation des Fragments mit der Activity ermöglicht, wenn auf ein
     // Produkt geklickt wurde
-    public interface OnHealthyProductSelectedListener {
+    public interface OnHealthyProductSelectedListener
+    {
         public void onHealthyProductSelected(int id);
     }
 }

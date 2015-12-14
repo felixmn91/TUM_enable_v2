@@ -98,12 +98,12 @@ public class FeedbackBarView extends View
 
         if (spectrumActualValue <= spectrumThresholdValue)
         {
-            paint.setColor(ContextCompat.getColor(getContext(), R.color.green));
+            paint.setColor(ContextCompat.getColor(getContext(), R.color.darkgreen));
             paint.setStyle(Paint.Style.FILL);
             canvas.drawRect(barWidthLeft, barHeightActualValue, barWidthRight, barHeightBottom, paint);
         } else if (spectrumActualValue >= spectrumThresholdValue)
         {
-            paint.setColor(ContextCompat.getColor(getContext(), R.color.green));
+            paint.setColor(ContextCompat.getColor(getContext(), R.color.darkgreen));
             paint.setStyle(Paint.Style.FILL);
             canvas.drawRect(barWidthLeft, barHeightThresholdValue, barWidthRight, barHeightBottom, paint);
 
@@ -148,17 +148,17 @@ public class FeedbackBarView extends View
         textWidth = textPaint.measureText(label0PercentLine);
         canvas.drawText(label0PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, barHeightBottom - textHeight / 3f, textPaint);
 
-        String label25PercentLine = "" + (int) (0.25 * spectrumMaxValue);
-        textWidth = textPaint.measureText(label25PercentLine);
-        canvas.drawText(label25PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, strokeHeight25PercentLine + textHeight / 2f, textPaint);
-
-        String label50PercentLine = "" + (int) (0.5 * spectrumMaxValue);
-        textWidth = textPaint.measureText(label50PercentLine);
-        canvas.drawText(label50PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, strokeHeight50PercentLine + textHeight / 2f, textPaint);
-
-        String label75PercentLine = "" + (int) (0.75 * spectrumMaxValue);
-        textWidth = textPaint.measureText(label75PercentLine);
-        canvas.drawText(label75PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, strokeHeight75PercentLine + textHeight / 2f, textPaint);
+//        String label25PercentLine = "" + (int) (0.25 * spectrumMaxValue);
+//        textWidth = textPaint.measureText(label25PercentLine);
+//        canvas.drawText(label25PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, strokeHeight25PercentLine + textHeight / 2f, textPaint);
+//
+//        String label50PercentLine = "" + (int) (0.5 * spectrumMaxValue);
+//        textWidth = textPaint.measureText(label50PercentLine);
+//        canvas.drawText(label50PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, strokeHeight50PercentLine + textHeight / 2f, textPaint);
+//
+//        String label75PercentLine = "" + (int) (0.75 * spectrumMaxValue);
+//        textWidth = textPaint.measureText(label75PercentLine);
+//        canvas.drawText(label75PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, strokeHeight75PercentLine + textHeight / 2f, textPaint);
 
         String label100PercentLine = "" + (int) spectrumMaxValue;
         textWidth = textPaint.measureText(label100PercentLine);
@@ -175,7 +175,7 @@ public class FeedbackBarView extends View
         this.spectrumMaxValue = spectrumMaxValue;
     }
 
-    public void setSpectrumActualValue(int spectrumActualValue)
+    public void setSpectrumActualValue(float spectrumActualValue)
     {
         if (spectrumActualValue > spectrumMaxValue)
         {

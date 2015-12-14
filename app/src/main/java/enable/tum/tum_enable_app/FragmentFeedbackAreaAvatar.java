@@ -44,8 +44,8 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements ActivityOrde
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
         ArrayList<Product> actualOrder = instance.getOrder();
 
-        double kcal = instance.getKcalOfOrder();
-
+        // double kcal = instance.getKcalOfOrder();
+        double kcal = 350d;
         ImageView avatar = (ImageView) getActivity().findViewById(R.id.imageAvatar);
 
         if (kcal < 800) {
