@@ -1,5 +1,6 @@
 package enable.tum.tum_enable_app;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;

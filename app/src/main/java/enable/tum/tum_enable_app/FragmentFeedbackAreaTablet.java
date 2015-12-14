@@ -1,5 +1,6 @@
 package enable.tum.tum_enable_app;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,11 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -25,18 +24,17 @@ import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
 public class FragmentFeedbackAreaTablet extends Fragment
         implements View.OnClickListener,
         ActivityOrderingScreen.OnIncomingOrderListener {
-    private static final String Tag = "FragmentFAT";
+
+    private static final String TAG = "FragmentFAT";
 
     private boolean[] actualTablet = new boolean[6];
+    private Button bezahlen;
 
-    //onCreate only Configures the fragment instance
     @Override
     public void onCreate(Bundle saverdInstacesState) {
-
         super.onCreate(saverdInstacesState);
     }
 
-    //You Inflate Fragment in onCreateView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
         View v = inflater.inflate(R.layout.layout_fragment_feedback_area_tablet, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
@@ -45,13 +43,23 @@ public class FragmentFeedbackAreaTablet extends Fragment
             actualTablet[i] = false;
         }
 
-        Log.d("FragmentFeedbackAreaBar", "bla");
+        Log.d(TAG, "bla");
         return v;
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        bezahlen = (Button) getActivity().findViewById(R.id.bezahlen);
+        bezahlen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "on Click bezahlen");
+
+                DialogFragment bestätigungBezahlen = new PaymentDialogFragment();
+                bestätigungBezahlen.show(getFragmentManager(), "payment");
+            }
+        });
     }
 
     @Override
