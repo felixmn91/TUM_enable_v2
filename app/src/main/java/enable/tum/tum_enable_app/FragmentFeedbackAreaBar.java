@@ -8,13 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
+
 /**
  * Created by Lennart Mittag on 05.12.2015.
  */
-public class FragmentFeedbackAreaBar extends Fragment {
+public class FragmentFeedbackAreaBar extends Fragment implements IOrderObserver {
     private TextView mVersionField;
 
     private FeedbackBarView feedbackBar;
+    private TextView txtViewActualKcal;
 
     //onCreate only Configures the fragment instance
     @Override
@@ -38,10 +41,25 @@ public class FragmentFeedbackAreaBar extends Fragment {
     {
         super.onActivityCreated(savedInstanceState);
 
+        txtViewActualKcal = (TextView) getActivity().findViewById(R.id.txtOben);
+
         feedbackBar = (FeedbackBarView) getActivity().findViewById(R.id.feedbackbar);
         feedbackBar.setSpectrumMaxValue(1600);
         feedbackBar.setSpectrumThresholdValue(800);
         feedbackBar.calculateValues();
-        feedbackBar.setSpectrumActualValue(900);
+        feedbackBar.setSpectrumActualValue(0);
+
+        // IOrderObservable observable = (IOrderObservable) getParentFragment();
+        IOrderObservable observable = (IOrderObservable) ProgramLogicSingleton.getInstance();
+        observable.registerAsObserver(this);
+    }
+
+    @Override
+    public void onOrderChange()
+    {
+        double actualKcal = ProgramLogicSingleton.getInstance().getKcalOfOrder();
+        feedbackBar.setSpectrumActualValue((float) actualKcal);
+
+        txtViewActualKcal.setText("Kcal: " + (int)actualKcal);
     }
 }

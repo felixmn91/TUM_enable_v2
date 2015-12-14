@@ -65,7 +65,6 @@ public class FragmentFeedbackAreaTablet extends Fragment
     @Override
     public void onIncomingOrder(int id, Category category) {
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
-        ArrayList<Product> actualOrder = instance.getOrder();
 
         Product product = null;
 
@@ -75,11 +74,7 @@ public class FragmentFeedbackAreaTablet extends Fragment
             product = instance.getUnhealthyProducts().get(id);
         }
 
-        if (actualOrder.size() < actualTablet.length) {
-            actualOrder.add(product);
-        }
-        instance.setOrder(actualOrder);
-        updatePrice();
+        instance.addProductToActualOrder(product);
 
         ImageButton btnImg = null;
 
@@ -137,9 +132,7 @@ public class FragmentFeedbackAreaTablet extends Fragment
 
         Product removedProduct = (Product) imgBtn.getTag();
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
-        ArrayList<Product> actualOrder = instance.getOrder();
-        actualOrder.remove(removedProduct);
-        instance.setOrder(actualOrder);
+        instance.removeProductFromActualOrder(removedProduct);
 
         updatePrice();
     }
