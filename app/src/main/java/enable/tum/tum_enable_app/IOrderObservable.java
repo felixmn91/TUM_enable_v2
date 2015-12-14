@@ -6,5 +6,4 @@ package enable.tum.tum_enable_app;
 public interface IOrderObservable
 {
     public void registerAsObserver(IOrderObserver observer);
-    public void informObserverChangeHasOccurred();
 }

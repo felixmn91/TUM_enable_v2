@@ -18,9 +18,11 @@ import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
 /**
  * Created by Lennart Mittag on 06.12.2015.
  */
-public class FragmentFeedbackAreaAvatar extends Fragment implements ActivityOrderingScreen.OnIncomingOrderListener {
+public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserver {
 
     private static final String TAG = "FeedbackAreaAvatar";
+
+    ImageView avatar;
 
     //onCreate only Configures the fragment instance
     @Override
@@ -34,19 +36,26 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements ActivityOrde
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
         View v = inflater.inflate(R.layout.layout_fragment_feedback_area_avatar, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
-
-        Log.d("FragmentFeedbackAreaAv", "bla");
         return v;
     }
 
     @Override
-    public void onIncomingOrder(int id, Category category) {
-        ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
-        ArrayList<Product> actualOrder = instance.getOrder();
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
 
-        // double kcal = instance.getKcalOfOrder();
-        double kcal = 350d;
-        ImageView avatar = (ImageView) getActivity().findViewById(R.id.imageAvatar);
+        avatar = (ImageView) getActivity().findViewById(R.id.imageAvatar);
+
+        ProgramLogicSingleton.getInstance().registerAsObserver(this);
+    }
+
+    @Override
+    public void onOrderChange()
+    {
+        ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
+        double kcal = instance.getKcalOfOrder();
+
+
 
         if (kcal < 800) {
             avatar.setImageResource(R.drawable.smiley_great);

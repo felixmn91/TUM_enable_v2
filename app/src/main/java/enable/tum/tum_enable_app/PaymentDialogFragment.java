@@ -38,7 +38,7 @@ public class PaymentDialogFragment extends DialogFragment {
             list += p.getName() + "\n";
         }
 
-        list += s.getPriceOfOrder() + "\u20ac";
+        list += s.getPriceOfOrderAsFormattedString() + "\u20ac";
 
         return list;
     }

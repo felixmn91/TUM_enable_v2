@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@layout/rectangle_rounded_edges">
+    android:background="@color/darkgreen"
+    android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/cheeseburger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/product_big_salad_quinoa_product_preview" />
+        android:src="@drawable/mcdonalds_golden_arches" />
 </LinearLayout>

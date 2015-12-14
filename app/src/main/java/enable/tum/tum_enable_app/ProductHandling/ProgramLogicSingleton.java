@@ -21,8 +21,8 @@ public class ProgramLogicSingleton implements IOrderObservable
     private ArrayList<Product> unhealthyProducts;
     private ArrayList<Product> order;
 
-    private double actualPriceOfOrder = 0f;
-    private double actualKcalOfOrder = 0f;
+    private double actualPriceOfOrder = 0d;
+    private double actualKcalOfOrder = 0d;
 
     private ProgramLogicSingleton()
     {
@@ -46,9 +46,20 @@ public class ProgramLogicSingleton implements IOrderObservable
         return actualKcalOfOrder;
     }
 
+    public String getKcalOfOrderAsFormattedString()
+    {
+        return String.format("%.2f", actualKcalOfOrder);
+    }
+
     public double getPriceOfOrder()
     {
         return actualPriceOfOrder;
+    }
+
+    public String getPriceOfOrderAsFormattedString()
+    {
+        // return Math.round(actualPriceOfOrder * 100.0) / 100.0 + "";
+        return String.format("%.2f", actualPriceOfOrder);
     }
 
     public void addProductToActualOrder(Product product)
@@ -131,8 +142,7 @@ public class ProgramLogicSingleton implements IOrderObservable
         registeredObservers.add(observer);
     }
 
-    @Override
-    public void informObserverChangeHasOccurred()
+    private void informObserverChangeHasOccurred()
     {
         for (IOrderObserver orderObserver : registeredObservers)
         {

@@ -164,15 +164,9 @@ public class FragmentFeedbackAreaTablet extends Fragment
         instance.removeProductFromActualOrder(removedProduct);
     }
 
-    public void updatePrice()
-    {
-        ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
-        gesamtpreis.setText("Gesamtpreis: " + Math.round(instance.getPriceOfOrder() * 100.0) / 100.0 + "€");
-    }
-
     @Override
     public void onOrderChange()
     {
-        
+        gesamtpreis.setText("Gesamtpreis: " + ProgramLogicSingleton.getInstance().getPriceOfOrderAsFormattedString() + "€");
     }
 }
