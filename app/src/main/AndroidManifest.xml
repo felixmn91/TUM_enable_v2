@@ -24,6 +24,11 @@
             android:label="@string/title_activity_launch_terminal"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ActivityWelcomeScreen"
+            android:label="@string/title_activity_launch_terminal"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
     </application>
 

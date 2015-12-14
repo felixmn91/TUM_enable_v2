@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_marginRight="5dp"
-        android:background="#bebebe">
+        android:background="@color/white">
     </FrameLayout>
 
     <FrameLayout
@@ -28,6 +28,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_marginLeft="5dp"
-        android:background="#bebebe">
+        android:background="@color/white">
     </FrameLayout>
 </LinearLayout>

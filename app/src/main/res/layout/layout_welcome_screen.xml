@@ -9,4 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/mcdonalds_golden_arches" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bestellung starten"
+        android:id="@+id/bestellungStarten"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

@@ -19,7 +19,7 @@ public class ActivityStartScreen extends AppCompatActivity {
     private Button mAvatarNoNudging;
     private Button mAvatarNudging;
 
-    private String mSelectedVersion;
+    private TestVersion mSelectedVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,7 @@ public class ActivityStartScreen extends AppCompatActivity {
         mNoAvatarNoNudging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Change to Standard Teminal version
-                mSelectedVersion = "StandardVersion";
+                mSelectedVersion = TestVersion.avatar_off_nudging_off;
                 mLaunchTerminal(mSelectedVersion);
             }
         });
@@ -48,8 +47,7 @@ public class ActivityStartScreen extends AppCompatActivity {
         mNoAvatarNudging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Change to only Nudging
-                mSelectedVersion = "NudgingOnly";
+                mSelectedVersion = TestVersion.avatar_off_nudging_on;
                 mLaunchTerminal(mSelectedVersion);
             }
         });
@@ -58,8 +56,7 @@ public class ActivityStartScreen extends AppCompatActivity {
         mAvatarNoNudging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Change to only Avatar
-                mSelectedVersion = "AvatarOnly";
+                mSelectedVersion = TestVersion.avatar_on_nudging_off;
                 mLaunchTerminal(mSelectedVersion);
             }
         });
@@ -68,16 +65,15 @@ public class ActivityStartScreen extends AppCompatActivity {
         mAvatarNudging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Use Combined Version
-                mSelectedVersion = "CombinedVersion";
+                mSelectedVersion = TestVersion.avatar_on_nudging_on;
                 mLaunchTerminal(mSelectedVersion);
             }
         });
     }
 
-    public void mLaunchTerminal(String mVersion) {
-        Intent i = new Intent(ActivityStartScreen.this, ActivityOrderingScreen.class);
-        i.putExtra("SELECTED_VERSION", mVersion);
+    public void mLaunchTerminal(TestVersion version) {
+        Intent i = new Intent(ActivityStartScreen.this, ActivityWelcomeScreen.class);
+        i.putExtra("TEST_VERSION", version);
         startActivity(i);
     }
 }

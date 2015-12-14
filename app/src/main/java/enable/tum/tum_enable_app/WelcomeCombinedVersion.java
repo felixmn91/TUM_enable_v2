@@ -20,17 +20,16 @@ public class WelcomeCombinedVersion extends Fragment {
 
     //onCreate only Configures the fragment instance
     @Override
-    public void onCreate(Bundle saverdInstacesState){
+    public void onCreate(Bundle saverdInstacesState) {
 
-        super.onCreate(saverdInstacesState
-        );
+        super.onCreate(saverdInstacesState);
     }
 
 
     //You Inflate Fragment in onCreateView
     @Override
-    public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstaceState) {
-        View v =inflater.inflate(R.layout.welcome_screen_combined_version, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
+        View v = inflater.inflate(R.layout.welcome_screen_combined_version, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
         mVersionField = (TextView) v.findViewById(R.id.VersionText);
         mVersionField.setText("Combined Version");
 
