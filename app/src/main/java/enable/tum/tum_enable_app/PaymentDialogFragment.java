@@ -65,7 +65,7 @@ public class PaymentDialogFragment extends DialogFragment {
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
         TestRunData test = new TestRunData(instance.getOrder());
 
-        String string = test.testrunDataToString();
+        String string = test.testRunDataToString();
 
         //This will get the SD Card directory and create a folder named MyFiles in it.
         File sdCard = Environment.getExternalStorageDirectory();

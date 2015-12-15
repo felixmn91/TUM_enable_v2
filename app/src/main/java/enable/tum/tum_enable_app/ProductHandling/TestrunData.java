@@ -10,14 +10,13 @@ public class TestRunData {
     private static int id = 0;
 
     private ArrayList<Product> order;
-    // private int id;
 
     public TestRunData(ArrayList<Product> order) {
         this.order = order;
         id++;
     }
 
-    public String testrunDataToString() {
+    public String testRunDataToString() {
         String result = "Testdata: " + id + "\n";
         double preis = 0;
         double kcal = 0;
@@ -28,8 +27,8 @@ public class TestRunData {
             kcal += p.getKcal();
         }
 
-        result += "Gesamtpreis: " + preis + "\n";
-        result += "Gesamt Kcal: " + kcal + "\n\n";
+        result += "Gesamtpreis: " + String.format("%.2f", preis) + "\n";
+        result += "Gesamt Kcal: " + String.format("%.2f", kcal) + "\n\n";
 
         return result;
     }
