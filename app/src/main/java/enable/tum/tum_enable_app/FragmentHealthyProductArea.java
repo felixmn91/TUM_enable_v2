@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,6 +40,10 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
     public void onCreate(Bundle saverdInstacesState)
     {
         super.onCreate(saverdInstacesState);
+
+        //final HorizontalScrollView hs = (HorizontalScrollView) getActivity().findViewById(R.id.scrollView);
+
+        //Log.d(Tag, Integer.toString(hs.getScrollX()));
     }
 
     private void initializeImgButtonsRow(TestVersion testVersion)
@@ -78,6 +85,9 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
         View v = inflater.inflate(R.layout.layout_healthy_product_area, container, false); //a true would show the layout now, we are doing thsi in the ActivityOrderingScreen
 
         Log.d(Tag, "in onCreateView");
+
+      //  View SS = getActivity().findViewById(R.id.scrollView);
+      //  Log.d(Tag, Integer.toString(SS.getScrollX()));
         return v;
     }
 
@@ -93,13 +103,13 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
         healthyProductContainer = (LinearLayout) getActivity().findViewById(R.id.healthyProductContainer);
         if (testVersion == TestVersion.avatar_off_nudging_on || testVersion == TestVersion.avatar_on_nudging_on)
         {
-            healthyProductContainer.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.white));
+            healthyProductContainer.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.darkgreen));
         } else
         {
-            healthyProductContainer.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.black));
+            healthyProductContainer.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.white));
         }
 
-        initializeImgButtonsRow(testVersion);
+                initializeImgButtonsRow(testVersion);
     }
 
     @Override

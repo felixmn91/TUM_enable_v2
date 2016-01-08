@@ -106,22 +106,27 @@ public class FragmentFeedbackAreaTablet extends Fragment
         } else if (!actualTablet[1])
         {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button2);
+            getActivity().findViewById(R.id.button2).setVisibility(View.VISIBLE);
             actualTablet[1] = true;
         } else if (!actualTablet[2])
         {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button3);
+            getActivity().findViewById(R.id.button3).setVisibility(View.VISIBLE);
             actualTablet[2] = true;
         } else if (!actualTablet[3])
         {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button4);
+            getActivity().findViewById(R.id.button4).setVisibility(View.VISIBLE);
             actualTablet[3] = true;
         } else if (!actualTablet[4])
         {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button5);
+            getActivity().findViewById(R.id.button5).setVisibility(View.VISIBLE);
             actualTablet[4] = true;
         } else if (!actualTablet[5])
         {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button6);
+            getActivity().findViewById(R.id.button6).setVisibility(View.VISIBLE);
             actualTablet[5] = true;
         } else
         {
