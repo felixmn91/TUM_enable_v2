@@ -1,20 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkgreen"
-    android:orientation="vertical">
+    android:background="@drawable/welcome_screen_backround"
+    android:orientation="vertical"
+                android:weightSum="1">
 
-    <ImageView
+    <TextView
+        android:id="@+id/hello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/mcdonalds_golden_arches"
-        android:layout_gravity="center" />
+        android:text="Hi!"
+        android:textSize="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/grey"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/introduction"
+        android:text="@string/welcomeTXT1"
+        android:gravity="center_horizontal"
+        android:textSize="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/hello"
+        android:textColor="@color/grey"/>
+
+    <ImageView
+        android:id="@+id/helloAvatar"
+        android:layout_width="362dp"
+        android:layout_height="696dp"
+        android:src="@drawable/hello_avatar"
+        android:visibility="visible"
+        android:layout_alignTop="@+id/introduction"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
+
+    <TextView
+        android:id="@+id/whatToDo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcomeTXT2"
+        android:gravity="center_horizontal"
+        android:textSize="40dp"
+        android:layout_alignBottom="@+id/helloAvatar"
+        android:textColor="@color/grey"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/kcal_Abfrage"
+        android:orientation="horizontal"
+        android:layout_below="@+id/whatToDo"
+        android:layout_centerHorizontal="true"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
+
+        <EditText
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtKcal"
+            android:text="600"
+            android:textSize="40sp"
+            android:inputType="number"
+            android:textColor="@color/grey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kcal"
+            android:gravity="center_horizontal"
+            android:textSize="40sp"
+            android:textColor="@color/grey"/>
+
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/bestellungStarten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Bestellung starten" />
-</LinearLayout>
+        android:text="Bestellung starten"
+        android:layout_above="@+id/imageView"
+        android:layout_alignLeft="@+id/kcal_Abfrage"
+        android:layout_alignStart="@+id/kcal_Abfrage"/>
+
+
+    <ImageView
+        android:layout_width="85dp"
+        android:layout_height="123dp"
+        android:src="@drawable/mcdonalds_golden_arches"
+        android:layout_gravity="bottom"
+        android:id="@+id/imageView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+
+</RelativeLayout>

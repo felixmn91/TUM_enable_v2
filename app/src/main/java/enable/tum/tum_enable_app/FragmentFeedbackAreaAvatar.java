@@ -23,6 +23,7 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserv
     private static final String TAG = "FeedbackAreaAvatar";
 
     ImageView avatar;
+    TextView comment;
 
     //onCreate only Configures the fragment instance
     @Override
@@ -45,6 +46,10 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserv
         super.onActivityCreated(savedInstanceState);
 
         avatar = (ImageView) getActivity().findViewById(R.id.imageAvatar);
+        avatar.setImageResource(R.drawable.a_ok);
+
+        comment= (TextView) getActivity().findViewById(R.id.comment);
+        comment.setText("Drücke auf das Bild um ein Produkt auszuwählen!");
 
         ProgramLogicSingleton.getInstance().registerAsObserver(this);
     }
@@ -55,16 +60,27 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserv
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
         double kcal = instance.getKcalOfOrder();
 
+        double goal = instance.getPlanedkcalIntake();
 
 
-        if (kcal < 800) {
-            avatar.setImageResource(R.drawable.smiley_great);
-        } else if (kcal >= 800 && kcal < 900) {
-            avatar.setImageResource(R.drawable.smiley_good);
-        } else if (kcal >= 900 && kcal < 1000) {
-            avatar.setImageResource(R.drawable.smiley_ok);
+        if (kcal==0){
+            avatar.setImageResource(R.drawable.a_ok);
+            comment.setText("Drücke auf das Bild um ein Produkt auszuwählen!");
+        }
+        if (kcal > 0 && kcal <= goal) {
+            avatar.setImageResource(R.drawable.a_happy);
+            comment.setText("Super Wahl!");
+
+        } else if (kcal > goal && kcal <= (1.5 * goal)) {
+            avatar.setImageResource(R.drawable.a_ok);
+            comment.setText("Ist heute etwa Cheat Day?");
+
+        } else if (kcal > (3/2*goal) && kcal <= (2*goal)){
+            avatar.setImageResource(R.drawable.a_not_ok);
+            comment.setText("Bist du dir wirklich sicher?");
         } else {
-            avatar.setImageResource(R.drawable.smiley_bad);
+            avatar.setImageResource(R.drawable.a_sad);
+            comment.setText("Ernsthaft?");
         }
     }
 }

@@ -35,8 +35,10 @@ public class FeedbackBarView extends View
     private float barHeightBottom;
     private float barHeightThresholdValue;
     private float barHeightActualValue;
+    private float barHeightMiddleValue;
 
     private float spectrumMaxValue;
+    private float spectrumMiddleValue;
     private float spectrumThresholdValue;
     private float spectrumActualValue;
 
@@ -86,7 +88,7 @@ public class FeedbackBarView extends View
         barHeightBottom = height - paddingBottom;
         barHeightThresholdValue = barHeightBottom - (contentHeight * spectrumThresholdValue / spectrumMaxValue);
         barHeightActualValue = barHeightBottom - (contentHeight * spectrumActualValue / spectrumMaxValue);
-
+        barHeightMiddleValue = barHeightBottom - (contentHeight * spectrumMiddleValue/ spectrumMaxValue);
 
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.FILL);
@@ -101,15 +103,33 @@ public class FeedbackBarView extends View
             paint.setColor(ContextCompat.getColor(getContext(), R.color.darkgreen));
             paint.setStyle(Paint.Style.FILL);
             canvas.drawRect(barWidthLeft, barHeightActualValue, barWidthRight, barHeightBottom, paint);
-        } else if (spectrumActualValue >= spectrumThresholdValue)
-        {
+
+
+        } else if (spectrumActualValue > spectrumThresholdValue && spectrumActualValue <= spectrumMiddleValue){
+
             paint.setColor(ContextCompat.getColor(getContext(), R.color.darkgreen));
             paint.setStyle(Paint.Style.FILL);
             canvas.drawRect(barWidthLeft, barHeightThresholdValue, barWidthRight, barHeightBottom, paint);
 
-            paint.setColor(ContextCompat.getColor(getContext(), R.color.darkred));
+            paint.setColor(ContextCompat.getColor(getContext(), R.color.orange));
             paint.setStyle(Paint.Style.FILL);
             canvas.drawRect(barWidthLeft, barHeightActualValue, barWidthRight, barHeightThresholdValue, paint);
+
+
+        }
+        else if (spectrumActualValue > spectrumMiddleValue){
+
+            paint.setColor(ContextCompat.getColor(getContext(), R.color.darkgreen));
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawRect(barWidthLeft, barHeightThresholdValue, barWidthRight, barHeightBottom, paint);
+
+            paint.setColor(ContextCompat.getColor(getContext(), R.color.orange));
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawRect(barWidthLeft, barHeightMiddleValue, barWidthRight, barHeightThresholdValue, paint);
+
+            paint.setColor(ContextCompat.getColor(getContext(), R.color.darkred));
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawRect(barWidthLeft, barHeightActualValue, barWidthRight, barHeightMiddleValue, paint);
         }
 
         paint.setColor(Color.BLACK);
@@ -138,15 +158,18 @@ public class FeedbackBarView extends View
         textPaint.setColor(Color.BLACK);
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
 
+        String yourLimit = "Goal";
         String labelThresholdValue = "" + (int) spectrumThresholdValue;
-        float textWidth = textPaint.measureText(labelThresholdValue);
+        float textWidthValue = textPaint.measureText(labelThresholdValue);
+        float textWidthText = textPaint.measureText(yourLimit);
         float textHeight = (-1) * (fontMetrics.ascent);
         float offsetToLeftSideOfBar = (int) (5f * scale + 0.5f);
-        canvas.drawText(labelThresholdValue, 3 * (width / 16f) - textWidth - offsetToLeftSideOfBar, barHeightThresholdValue + textHeight / 2f, textPaint);
+        canvas.drawText(labelThresholdValue, 3 * (width / 16f) - textWidthValue - offsetToLeftSideOfBar, barHeightThresholdValue + textHeight / 2f, textPaint);
+        canvas.drawText(yourLimit, 3 * (width / 16f) - textWidthValue - offsetToLeftSideOfBar, barHeightThresholdValue - textHeight / 2f, textPaint);
 
         String label0PercentLine = "0";
-        textWidth = textPaint.measureText(label0PercentLine);
-        canvas.drawText(label0PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, barHeightBottom - textHeight / 3f, textPaint);
+        textWidthValue = textPaint.measureText(label0PercentLine);
+        canvas.drawText(label0PercentLine, barWidthLeft - textWidthValue - offsetToLeftSideOfBar, barHeightBottom - textHeight / 3f, textPaint);
 
 //        String label25PercentLine = "" + (int) (0.25 * spectrumMaxValue);
 //        textWidth = textPaint.measureText(label25PercentLine);
@@ -161,8 +184,8 @@ public class FeedbackBarView extends View
 //        canvas.drawText(label75PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, strokeHeight75PercentLine + textHeight / 2f, textPaint);
 
         String label100PercentLine = "" + (int) spectrumMaxValue;
-        textWidth = textPaint.measureText(label100PercentLine);
-        canvas.drawText(label100PercentLine, barWidthLeft - textWidth - offsetToLeftSideOfBar, barHeightTop + textHeight / 2f, textPaint);
+        textWidthValue = textPaint.measureText(label100PercentLine);
+        canvas.drawText(label100PercentLine, barWidthLeft - textWidthValue - offsetToLeftSideOfBar, barHeightTop + textHeight / 2f, textPaint);
     }
 
     public void setSpectrumThresholdValue(int spectrumThresholdValue)
@@ -173,6 +196,10 @@ public class FeedbackBarView extends View
     public void setSpectrumMaxValue(int spectrumMaxValue)
     {
         this.spectrumMaxValue = spectrumMaxValue;
+    }
+
+    public void setSpectrumMiddleValue (int spectrumMiddleValue){
+        this.spectrumMiddleValue = spectrumMiddleValue;
     }
 
     public void setSpectrumActualValue(float spectrumActualValue)

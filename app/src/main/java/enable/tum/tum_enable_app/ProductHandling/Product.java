@@ -8,24 +8,34 @@ public class Product {
     private double price;
     private double kcal;
     private Category category;
-    private int pathPicture;
+    private int ppathPicture;
     private int uniqueIdentifier;
+    private int ipathPicture;
 
-    public Product(String pName, double pPrice, double pKcal, Category pCategory, int pPathPicture) {
+    public Product(String pName, double pPrice, double pKcal, Category pCategory, int pPathPicture, int iInfoPicture) {
         this.name = pName;
         this.price = pPrice;
         this.kcal = pKcal;
         this.category = pCategory;
-        this.pathPicture = pPathPicture;
+        this.ppathPicture = pPathPicture;
+        this.ipathPicture =iInfoPicture;
+
     }
 
-    public int getPathPicture() {
-        return pathPicture;
+    public int getpPathPicture() {
+        return ppathPicture;
     }
 
-    public void setPathPicture(int pathPicture) {
-        this.pathPicture = pathPicture;
+    public void setpPathPicture(int pathPicture) {
+        this.ppathPicture = pathPicture;
     }
+
+    public int getIpathPicture() {
+        return ipathPicture;
+    }
+
+    public void setIpathPicture(int ipathPicture){ this.ipathPicture=ipathPicture; }
+
 
     public Category getCategory() {
         return category;
@@ -58,4 +68,5 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
+
 }

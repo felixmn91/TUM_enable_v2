@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,14 +25,15 @@ public class ActivityStartScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // If the Android version is lower than Jellybean, use this call to hide
         // the status bar.
         if (Build.VERSION.SDK_INT < 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        setContentView(R.layout.layout_start_screen);
 
+        setContentView(R.layout.layout_start_screen);
         //Instantiate Buttons and set Listeners
 
         mNoAvatarNoNudging = (Button) findViewById(R.id.no_avatar_no_nudging);
@@ -39,7 +41,7 @@ public class ActivityStartScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mSelectedVersion = TestVersion.avatar_off_nudging_off;
-                mLaunchTerminal(mSelectedVersion);
+                mLaunchTerminal(mSelectedVersion, "NoAvatar");
             }
         });
 
@@ -48,7 +50,8 @@ public class ActivityStartScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mSelectedVersion = TestVersion.avatar_off_nudging_on;
-                mLaunchTerminal(mSelectedVersion);
+                Log.d(TAG, mSelectedVersion.toString());
+                mLaunchTerminal(mSelectedVersion, "NoAvatar");
             }
         });
 
@@ -57,7 +60,7 @@ public class ActivityStartScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mSelectedVersion = TestVersion.avatar_on_nudging_off;
-                mLaunchTerminal(mSelectedVersion);
+                mLaunchTerminal(mSelectedVersion, "Avatar");
             }
         });
 
@@ -66,14 +69,20 @@ public class ActivityStartScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mSelectedVersion = TestVersion.avatar_on_nudging_on;
-                mLaunchTerminal(mSelectedVersion);
+                mLaunchTerminal(mSelectedVersion, "Avatar");
             }
         });
     }
 
-    public void mLaunchTerminal(TestVersion version) {
-        Intent i = new Intent(ActivityStartScreen.this, ActivityWelcomeScreen.class);
-        i.putExtra(getResources().getString(R.string.strTestVersion), version);
-        startActivity(i);
+    public void mLaunchTerminal(TestVersion version, String s) {
+        if (s.equals("Avatar")) {
+            Intent i = new Intent(ActivityStartScreen.this, ActivityWelcomeScreen.class);
+            i.putExtra(getResources().getString(R.string.strTestVersion), version);
+            startActivity(i);
+        } else {
+            Intent i = new Intent(ActivityStartScreen.this, ActivityWelcomeScreenWithoutAvatar.class);
+            i.putExtra(getResources().getString(R.string.strTestVersion), version);
+            startActivity(i);
+        }
     }
 }

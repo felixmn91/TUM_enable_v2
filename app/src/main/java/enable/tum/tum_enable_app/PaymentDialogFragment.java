@@ -34,7 +34,7 @@ public class PaymentDialogFragment extends DialogFragment {
 
                         writeTestRunDataToFile();
 
-                        Intent newIntent = new Intent(getActivity(), ActivityStartScreen.class);
+                        Intent newIntent = new Intent(getActivity(), ActivityGoodbyeScreen.class);
                         startActivity(newIntent);
                     }
                 })

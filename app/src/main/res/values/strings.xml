@@ -8,5 +8,7 @@
     <string name="avatar_nudging">Avatar on | Nudging: on</string>
     <string name="strTestVersion">TEST_VERSION</string>
     <string name="filename">data.txt</string>
+    <string name="welcomeTXT1">Ich bin James und helfe dir dein Kcal Ziel zu erreichen. </string>
+    <string name="welcomeTXT2">Bitte gib die gewünschte Anzahl an Kcal an: </string>2
 
 </resources>

@@ -2,14 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:weightSum="6"
+              android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/choose_meal"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:layout_margin="5dip"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="Was möchtest du essen?"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="150dip"
+        android:layout_height="0dip"
         android:id="@+id/imageAvatar"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
-        android:src="@drawable/smiley_great"
+        android:src="@drawable/a_ok"
+        android:layout_weight="4"
         android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:layout_margin="5dip"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="Super!"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+    />
 </LinearLayout>

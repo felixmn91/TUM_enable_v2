@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     android:padding="4dp"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@drawable/neutralbackrounds">
 
     <FrameLayout
         android:id="@+id/fragmentContainer_feedback_area"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:layout_marginBottom="4dp">
     </FrameLayout>
 
@@ -21,7 +21,7 @@
         android:id="@+id/fragmentContainer_healthy_product_area"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="4"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp">
     </FrameLayout>
@@ -30,7 +30,7 @@
         android:id="@+id/fragmentContainer_unhealthy_product_area"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="4"
         android:layout_marginTop="4dp">
     </FrameLayout>
 

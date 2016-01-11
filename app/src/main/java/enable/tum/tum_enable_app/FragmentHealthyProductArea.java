@@ -2,16 +2,18 @@ package enable.tum.tum_enable_app;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.HorizontalScrollView;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,14 +28,13 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
 {
     public static final String Tag = "FragmentHPA";
 
-    private TextView mVersionField;
-
     private ArrayList<ImageButton> imgButtons;
 
     private LinearLayout healthyProductContainer;
 
-    private OnHealthyProductSelectedListener onHealthyProductSelectedListener;
+    private RelativeLayout healthyProductArea;
 
+    private OnHealthyProductSelectedListener onHealthyProductSelectedListener;
 
     //onCreate only Configures the fragment instance
     @Override
@@ -41,9 +42,23 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
     {
         super.onCreate(saverdInstacesState);
 
-        //final HorizontalScrollView hs = (HorizontalScrollView) getActivity().findViewById(R.id.scrollView);
+        new CountDownTimer(2000, 1000) {
 
-        //Log.d(Tag, Integer.toString(hs.getScrollX()));
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            public void onFinish() {
+                Log.d(Tag, "done");
+                ImageView s = (ImageView) getActivity().findViewById(R.id.scrollIndicatorRight);
+
+                fadeOut(s);
+
+            }
+        }.start();
+
+
     }
 
     private void initializeImgButtonsRow(TestVersion testVersion)
@@ -56,17 +71,10 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
         for (Product p : healthyProducts)
         {
             CustomButtonProductItem cBtn = new CustomButtonProductItem(getActivity());
-            cBtn.setIdentifier(p.getPathPicture());
+            cBtn.setIdentifier(p.getpPathPicture());
             cBtn.setProductName(p.getName());
             cBtn.setPrice(p.getPrice());
             cBtn.setOnClickListener(this);
-            if (testVersion == TestVersion.avatar_off_nudging_on || testVersion == TestVersion.avatar_on_nudging_on)
-            {
-                cBtn.setBackgroundResourceIdentifier(R.drawable.background_custom_button_healthy_product_item);
-            } else
-            {
-                cBtn.setBackgroundResourceIdentifier(R.drawable.background_custom_button_unhealthy_product_item);
-            }
             cBtn.setId(i);
             cBtn.setTag(p);
 
@@ -86,8 +94,6 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
 
         Log.d(Tag, "in onCreateView");
 
-      //  View SS = getActivity().findViewById(R.id.scrollView);
-      //  Log.d(Tag, Integer.toString(SS.getScrollX()));
         return v;
     }
 
@@ -99,18 +105,17 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
         TestVersion testVersion = (TestVersion) getActivity().getIntent().getSerializableExtra(getResources().getString(R.string.strTestVersion));
 
         onHealthyProductSelectedListener = (OnHealthyProductSelectedListener) getActivity();
-
         healthyProductContainer = (LinearLayout) getActivity().findViewById(R.id.healthyProductContainer);
+
+        healthyProductArea= (RelativeLayout) getActivity().findViewById(R.id.healthyProductArea);
         if (testVersion == TestVersion.avatar_off_nudging_on || testVersion == TestVersion.avatar_on_nudging_on)
         {
-            healthyProductContainer.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.darkgreen));
-        } else
-        {
-            healthyProductContainer.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.white));
-        }
+            healthyProductArea.setBackgroundDrawable(getResources().getDrawable(R.drawable.greenbackrounds));
 
+        }
                 initializeImgButtonsRow(testVersion);
     }
+
 
     @Override
     public void onClick(View v)
@@ -127,4 +132,19 @@ public class FragmentHealthyProductArea extends Fragment implements View.OnClick
     {
         public void onHealthyProductSelected(int id);
     }
+
+    public void fadeOut(ImageView v){
+        Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setStartOffset(500); // Start fading out after 500 milli seconds
+        fadeOut.setDuration(1000); // Fadeout duration should be 1000 milli seconds
+
+        Log.d(Tag, "fade");
+
+        v.startAnimation(fadeOut);
+        v.setVisibility(View.INVISIBLE);
+
+    }
+
+
 }

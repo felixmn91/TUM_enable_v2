@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import enable.tum.tum_enable_app.ProductHandling.Product;
@@ -25,6 +26,7 @@ public class FragmentUnhealthyProductArea extends Fragment implements View.OnCli
 
     private ArrayList<ImageButton> imgButtons;
 
+    private RelativeLayout unhealthyProductArea;
     private LinearLayout unhealthyProductContainer;
 
     private OnUnhealthyProductSelectedListener onUnhealthyProductSelectedListener;
@@ -42,11 +44,10 @@ public class FragmentUnhealthyProductArea extends Fragment implements View.OnCli
         int i = 0;
         for (Product p : unhealthyProducts) {
             CustomButtonProductItem cBtn = new CustomButtonProductItem(getActivity());
-            cBtn.setIdentifier(p.getPathPicture());
+            cBtn.setIdentifier(p.getpPathPicture());
             cBtn.setProductName(p.getName());
             cBtn.setPrice(p.getPrice());
             cBtn.setOnClickListener(this);
-            cBtn.setBackgroundResourceIdentifier(R.drawable.background_custom_button_unhealthy_product_item);
             cBtn.setId(i);
 
             unhealthyProductContainer.addView(cBtn);
@@ -72,6 +73,7 @@ public class FragmentUnhealthyProductArea extends Fragment implements View.OnCli
         onUnhealthyProductSelectedListener = (OnUnhealthyProductSelectedListener) getActivity();
 
         unhealthyProductContainer = (LinearLayout) getActivity().findViewById(R.id.unhealthyProductContainer);
+
         initializeImgButtonsRow();
     }
 

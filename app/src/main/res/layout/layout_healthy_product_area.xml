@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
+    android:id="@+id/healthyProductArea"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:bottomRightRadius="100dp"
+    android:bottomLeftRadius="100dp"
+    android:topLeftRadius="100dp"
+    android:topRightRadius="100dp">
 
     <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                           android:id="@+id/scrollView"
@@ -12,25 +17,25 @@
                           android:layout_height="wrap_content">
 
 
-            <LinearLayout
-                android:id="@+id/healthyProductContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+        <LinearLayout
+            android:id="@+id/healthyProductContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            </LinearLayout>
-        </HorizontalScrollView> />
+        </LinearLayout>
+    </HorizontalScrollView> />
 
-    <ImageView android:src="@drawable/right_arrow"
+    <ImageView android:src="@drawable/swipe"
                android:contentDescription="right_arrow"
                android:layout_height="wrap_content"
-               android:layout_width="60dp"
-               android:layout_alignParentRight="true"
-               android:layout_alignParentEnd="true"
+               android:layout_width="wrap_content"
+               android:layout_centerVertical="true"
+               android:layout_centerHorizontal="true"
                android:visibility="visible"
-               android:id="@+id/rightArrow"/>
+               android:alpha="1"
+               android:id="@+id/scrollIndicatorRight"/>
 
 
 </RelativeLayout>

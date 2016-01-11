@@ -107,6 +107,7 @@ public class FragmentFeedbackAreaTablet extends Fragment
         {
             btnImg = (ImageButton) getActivity().findViewById(R.id.button2);
             getActivity().findViewById(R.id.button2).setVisibility(View.VISIBLE);
+            getActivity().findViewById(R.id.secondRow).setVisibility(View.VISIBLE);
             actualTablet[1] = true;
         } else if (!actualTablet[2])
         {
@@ -136,7 +137,7 @@ public class FragmentFeedbackAreaTablet extends Fragment
         btnImg.setOnClickListener(this);
 
         btnImg.setTag(product);
-        btnImg.setImageResource(product.getPathPicture());
+        btnImg.setImageResource(product.getpPathPicture());
         btnImg.setBackgroundColor(Color.WHITE);
         btnImg.invalidate();
     }
@@ -174,6 +175,11 @@ public class FragmentFeedbackAreaTablet extends Fragment
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
         instance.removeProductFromActualOrder(removedProduct);
     }
+
+    public void OnLongClick(View v){
+
+    }
+
 
     @Override
     public void onOrderChange()

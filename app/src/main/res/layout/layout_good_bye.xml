@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/welcome_screen_backround"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+    <TextView
+        android:id="@+id/byebye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vielen Dank für deine Bestellung!"
+        android:textSize="50dp"
+        android:textColor="@color/grey"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_above="@+id/byeAvatar"/>
+
+    <ImageView
+        android:id="@+id/byeAvatar"
+        android:layout_width="362dp"
+        android:layout_height="696dp"
+        android:src="@drawable/happy_avatar"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@android:color/transparent"
+        android:layout_above="@+id/McD"
+        android:layout_alignRight="@+id/McD"
+        android:layout_alignEnd="@+id/McD"/>
+
+    <ImageView
+        android:id="@+id/McD"
+        android:layout_width="85dp"
+        android:layout_height="123dp"
+        android:src="@drawable/mcdonalds_golden_arches"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        />
+
+
+
+
+
+</RelativeLayout>

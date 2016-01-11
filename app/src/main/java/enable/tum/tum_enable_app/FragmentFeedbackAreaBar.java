@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Space;
 import android.widget.TextView;
 
 import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
@@ -43,9 +44,14 @@ public class FragmentFeedbackAreaBar extends Fragment implements IOrderObserver 
 
         txtViewActualKcal = (TextView) getActivity().findViewById(R.id.txtKcal);
 
+        double goalkcal = ProgramLogicSingleton.getInstance().getPlanedkcalIntake();
+
+        Log.d("Test", String.valueOf(goalkcal));
+
         feedbackBar = (FeedbackBarView) getActivity().findViewById(R.id.feedbackbar);
-        feedbackBar.setSpectrumMaxValue(1600);
-        feedbackBar.setSpectrumThresholdValue(800);
+        feedbackBar.setSpectrumMaxValue((int) (2f *goalkcal));
+        feedbackBar.setSpectrumThresholdValue((int) goalkcal);
+        feedbackBar.setSpectrumMiddleValue((int) (1.5f *goalkcal));
         feedbackBar.calculateValues();
         feedbackBar.setSpectrumActualValue(0);
 
