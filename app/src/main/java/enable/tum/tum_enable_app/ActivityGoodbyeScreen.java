@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class ActivityGoodbyeScreen extends AppCompatActivity {
 
@@ -24,6 +26,17 @@ public class ActivityGoodbyeScreen extends AppCompatActivity {
         Log.d(TAG, "in onCreateView");
 
         setContentView(R.layout.layout_good_bye);
+
+        ImageButton restart= (ImageButton) findViewById(R.id.McD);
+
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ActivityGoodbyeScreen.this, ActivityStartScreen.class);
+                startActivity(i);
+            }
+        });
+
 
     }
 }

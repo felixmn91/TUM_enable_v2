@@ -78,7 +78,7 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserv
         } else if (kcal > (3/2*goal) && kcal <= (2*goal)){
             avatar.setImageResource(R.drawable.a_not_ok);
             comment.setText("Bist du dir wirklich sicher?");
-        } else {
+        } else if (kcal > (2*goal)){
             avatar.setImageResource(R.drawable.a_sad);
             comment.setText("Ernsthaft?");
         }

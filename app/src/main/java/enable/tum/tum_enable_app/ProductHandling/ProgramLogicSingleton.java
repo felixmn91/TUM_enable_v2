@@ -133,7 +133,7 @@ public class ProgramLogicSingleton implements IOrderObservable {
         unhealthyProducts.add(new Product("Coca Cola 0,4L", 1.49, 170.0, Category.unhealthy, R.drawable.product_coca_cola_product_preview, R.drawable.produktinfo_cola_04));
         unhealthyProducts.add(new Product("Coca Cola 0,5L", 4.19, 210.0, Category.unhealthy, R.drawable.product_coca_cola_product_preview, R.drawable.produktinfo_cola_05));
         unhealthyProducts.add(new Product("Sprite 0,4L", 4.19, 148.0, Category.unhealthy, R.drawable.product_sprite_product_preview, R.drawable.produktinfo_sprite_04));
-        unhealthyProducts.add(new Product("Sprite groß", 4.19, 185.0, Category.unhealthy, R.drawable.product_sprite_product_preview, R.drawable.produktinfo_sprite_05));
+        unhealthyProducts.add(new Product("Sprite 0,5L", 4.19, 185.0, Category.unhealthy, R.drawable.product_sprite_product_preview, R.drawable.produktinfo_sprite_05));
     }
 
     public ArrayList<Product> getUnhealthyProducts() {

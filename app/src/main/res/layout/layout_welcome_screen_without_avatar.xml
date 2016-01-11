@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/welcome_screen_backround"
-    android:orientation="vertical"
-                android:weightSum="1">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/welcome_screen_backround"
+              android:orientation="vertical">
 
     <TextView
         android:id="@+id/hello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="2"
+        android:gravity="center_horizontal"
         android:text="Guten Tag!"
         android:textSize="50dp"
-        android:layout_marginTop="80dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:textColor="@color/grey"/>
 
     <TextView
         android:id="@+id/whatToDo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcomeTXT2"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="2"
         android:gravity="center_horizontal"
+        android:text="@string/welcomeTXT2"
         android:textSize="40dp"
-        android:layout_above="@+id/kcal_Abfrage"
-        android:layout_centerHorizontal="true"
         android:textColor="@color/grey"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/kcal_Abfrage"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="2"
         android:orientation="horizontal"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true">
 
@@ -49,10 +48,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="kcal"
             android:gravity="center_horizontal"
-            android:textSize="40sp"
+            android:text="kcal"
+            android:textSize="40dp"
             android:textColor="@color/grey"/>
+
 
     </LinearLayout>
 
@@ -60,23 +60,20 @@
     <Button
         android:id="@+id/bestellungStarten"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:text="Bestellung starten"
-        android:layout_marginBottom="114dp"
-        android:layout_above="@+id/imageView"
-        android:layout_centerHorizontal="true"/>
+        android:layout_above="@+id/imageView"/>
 
 
     <ImageView
-        android:layout_width="85dp"
-        android:layout_height="123dp"
+        android:layout_width="85dip"
+        android:layout_height="0dip"
+        android:layout_weight="2"
         android:src="@drawable/mcdonalds_golden_arches"
-        android:layout_gravity="bottom"
+        android:layout_gravity="bottom|right"
         android:id="@+id/imageView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        />
 
 
-</RelativeLayout>
+</LinearLayout>
