@@ -16,8 +16,7 @@ import android.widget.TextView;
 /**
  * Created by Lennart Mittag on 06.12.2015.
  */
-public class CustomButtonProductItem extends LinearLayout
-{
+public class CustomButtonProductItem extends LinearLayout {
     LinearLayout containerCustomButtonProductItem;
 
     private Button txtOben;
@@ -27,16 +26,13 @@ public class CustomButtonProductItem extends LinearLayout
     private String productName;
     private double price;
     private int backgroundResourceIdentifier;
-    private int infoBoxIdentifier;
 
-    public CustomButtonProductItem(Context context)
-    {
+    public CustomButtonProductItem(Context context) {
         super(context);
         initializeLayout(context);
     }
 
-    public CustomButtonProductItem(Context context, AttributeSet attrs)
-    {
+    public CustomButtonProductItem(Context context, AttributeSet attrs) {
         super(context, attrs);
         initializeLayout(context);
 
@@ -46,14 +42,12 @@ public class CustomButtonProductItem extends LinearLayout
         String productName = a.getString(R.styleable.CustomButton_product_name);
         double price = (double) a.getFloat(R.styleable.CustomButton_product_price, 0.0f);
         int imgIdentifier = a.getResourceId(R.styleable.CustomButton_img_identifier, 0);
-     //   int infoIndentifier= a.getResourceId(R.styleable.CustomButton_infoSource_identifier, 0);
 
         txtOben.setText(productName);
         txtOben.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Log.d("Test","Inforequested" );
+                Log.d("Test", "Inforequested");
                 performClick();
             }
         });
@@ -61,27 +55,22 @@ public class CustomButtonProductItem extends LinearLayout
         imgBtn.setImageResource(imgIdentifier);
         imgBtn.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         imgBtn.setAdjustViewBounds(true);
-        imgBtn.setOnClickListener(new OnClickListener()
-        {
+        imgBtn.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 performClick();
             }
         });
     }
 
-    public CustomButtonProductItem(Context context, AttributeSet attrs, int defStyleAttr)
-    {
+    public CustomButtonProductItem(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initializeLayout(context);
     }
 
-    private void initializeLayout(Context context)
-    {
+    private void initializeLayout(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (inflater != null)
-        {
+        if (inflater != null) {
             inflater.inflate(R.layout.custom_button_product_item, this);
         }
 
@@ -91,32 +80,12 @@ public class CustomButtonProductItem extends LinearLayout
         imgBtn = (ImageButton) findViewById(R.id.imageButtonProduct);
     }
 
-    public double getPrice()
-    {
-        return price;
-    }
-
-    public void setPrice(double price)
-    {
+    public void setPrice(double price) {
         this.price = price;
         txtUnten.setText("Preis: " + String.format("%1$,.2f", price) + "€");
     }
 
-    public int getBackgroundResourceIdentifier()
-    {
-        return backgroundResourceIdentifier;
-    }
-
-    public void setBackgroundResourceIdentifier(int id)
-    {
-        containerCustomButtonProductItem.setBackgroundResource(id);
-        txtOben.setBackgroundResource(id);
-        imgBtn.setBackgroundResource(id);
-        txtUnten.setBackgroundResource(id);
-    }
-
-    public void setIdentifier(int id)
-    {
+    public void setIdentifier(int id) {
         this.backgroundResourceIdentifier = id;
         imgBtn.setImageResource(id);
         imgBtn.setOnClickListener(new OnClickListener() {
@@ -127,26 +96,7 @@ public class CustomButtonProductItem extends LinearLayout
         });
     }
 
-    public void setInfoBoxIndentifier(int id){
-        this.backgroundResourceIdentifier = id;
-        txtOben.setBackgroundResource(id);
-        txtOben.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                performClick();
-            }
-        });
-    }
-
-    public int getInfoBoxIdentifier() {return infoBoxIdentifier;}
-
-    public String getProductName()
-    {
-        return productName;
-    }
-
-    public void setProductName(String productName)
-    {
+    public void setProductName(String productName) {
         this.productName = productName;
         txtOben.setText(productName);
     }

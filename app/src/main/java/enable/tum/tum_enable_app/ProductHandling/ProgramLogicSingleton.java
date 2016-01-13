@@ -103,8 +103,8 @@ public class ProgramLogicSingleton implements IOrderObservable {
         healthyProducts = new ArrayList<>();
 
         // Hauptspeisen
-        healthyProducts.add(new Product("Big Salad mit Quinoa Bratling", 5.19, 210.0, Category.healthy, R.drawable.product_big_salad_quinoa_product_preview, R.drawable.produktinfo_salat_quinoa));
-        healthyProducts.add(new Product("Cheeseburger", 1.10, 304.0, Category.healthy, R.drawable.product_cheeseburger_product_preview, R.drawable.produktinfo_cheesburger));
+        healthyProducts.add(new Product("Big Salad Quinoa", 5.19, 210.0, Category.healthy, R.drawable.product_big_salad_quinoa_product_preview, R.drawable.produktinfo_salat_quinoa));
+        healthyProducts.add(new Product("Cheeseburger", 1.10, 304.0, Category.healthy, R.drawable.product_cheeseburger_product_preview_quadrat, R.drawable.produktinfo_cheesburger));
         healthyProducts.add(new Product("6 Chicken McNuggets", 3.19, 268.0, Category.healthy, R.drawable.product_chicken_mcnuggets_product_preview, R.drawable.produktinfo_nuggets));
 
         // Beilagen
@@ -113,7 +113,7 @@ public class ProgramLogicSingleton implements IOrderObservable {
         healthyProducts.add(new Product("Pommes klein", 3.19, 210.0, Category.healthy, R.drawable.product_pommes_frites_klein_product_preview,R.drawable.produktinfo_salat_quinoa));
 
         // Getränke
-        healthyProducts.add(new Product("Bon Aqa 0,4L", 3.19, 0.0, Category.healthy, R.drawable.product_bonaqa_product_preview, R.drawable.produktinfo_wasser));
+        healthyProducts.add(new Product("Bon Aqa 0.4L", 3.19, 0.0, Category.healthy, R.drawable.product_bonaqa_product_preview, R.drawable.produktinfo_wasser));
         healthyProducts.add(new Product("Coca Cola Light 0,4L", 1.49, 1.0, Category.healthy, R.drawable.product_coca_cola_light_product_preview, R.drawable.produktinfo_cola_light_04));
         healthyProducts.add(new Product("Apfelsaftschorle 0,4L", 3.19, 100.0, Category.healthy, R.drawable.product_lift_apfelschorle_product_preview, R.drawable.produktinfo_apfel_mittel));
 
@@ -121,7 +121,7 @@ public class ProgramLogicSingleton implements IOrderObservable {
 
         // Hauptspeisen
         unhealthyProducts.add(new Product("Big Mac", 4.19, 509.0, Category.unhealthy, R.drawable.product_big_mac_product_preview, R.drawable.produktinfo_bigmac));
-        unhealthyProducts.add(new Product("McVeggi TS", 4.19, 465.0, Category.unhealthy, R.drawable.product_mcveggie_ts_product_preview, R.drawable.produktinfo_veggiets));
+        unhealthyProducts.add(new Product("McVeggie TS", 4.19, 465.0, Category.unhealthy, R.drawable.product_mcveggie_ts_product_preview, R.drawable.produktinfo_veggiets));
         unhealthyProducts.add(new Product("Hamburger Royal TS", 4.19, 518.0, Category.unhealthy, R.drawable.product_hamburger_royal_ts_product_preview, R.drawable.produktinfo_royalts));
 
         // Beilagen
@@ -130,10 +130,10 @@ public class ProgramLogicSingleton implements IOrderObservable {
         unhealthyProducts.add(new Product("McFlurry Schokolinsen", 4.19, 350.0, Category.unhealthy, R.drawable.product_mcflurry__smarties__product_preview, R.drawable.produktinfo_mcflurry));
 
         // Getränke
-        unhealthyProducts.add(new Product("Coca Cola 0,4L", 1.49, 170.0, Category.unhealthy, R.drawable.product_coca_cola_product_preview, R.drawable.produktinfo_cola_04));
-        unhealthyProducts.add(new Product("Coca Cola 0,5L", 4.19, 210.0, Category.unhealthy, R.drawable.product_coca_cola_product_preview, R.drawable.produktinfo_cola_05));
-        unhealthyProducts.add(new Product("Sprite 0,4L", 4.19, 148.0, Category.unhealthy, R.drawable.product_sprite_product_preview, R.drawable.produktinfo_sprite_04));
-        unhealthyProducts.add(new Product("Sprite 0,5L", 4.19, 185.0, Category.unhealthy, R.drawable.product_sprite_product_preview, R.drawable.produktinfo_sprite_05));
+        unhealthyProducts.add(new Product("Coca Cola 0.4L", 1.49, 170.0, Category.unhealthy, R.drawable.product_coca_cola_product_preview, R.drawable.produktinfo_cola_04));
+        unhealthyProducts.add(new Product("Coca Cola 0.5L", 4.19, 210.0, Category.unhealthy, R.drawable.product_coca_cola_product_preview, R.drawable.produktinfo_cola_05));
+        unhealthyProducts.add(new Product("Sprite 0.4L", 4.19, 148.0, Category.unhealthy, R.drawable.product_sprite_product_preview, R.drawable.produktinfo_sprite_04));
+        unhealthyProducts.add(new Product("Sprite 0.5L", 4.19, 185.0, Category.unhealthy, R.drawable.product_sprite_product_preview, R.drawable.produktinfo_sprite_05));
     }
 
     public ArrayList<Product> getUnhealthyProducts() {

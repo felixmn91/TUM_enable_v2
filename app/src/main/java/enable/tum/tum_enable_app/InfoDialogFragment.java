@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,6 +23,9 @@ import enable.tum.tum_enable_app.ProductHandling.TestRunData;
  * Created by Felix Naser on 14.12.2015.
  */
 public class InfoDialogFragment extends DialogFragment {
+
+    private static final String TAG = "InfoDialogFragment";
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -61,6 +65,7 @@ public class InfoDialogFragment extends DialogFragment {
 
     private void writeTestRunDataToFile() {
         String filename = getResources().getString(R.string.filename);
+        String dirname = "/TestRunData";
 
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
         TestRunData test = new TestRunData(instance.getOrder());
@@ -69,8 +74,10 @@ public class InfoDialogFragment extends DialogFragment {
 
         //This will get the SD Card directory and create a folder named MyFiles in it.
         File sdCard = Environment.getExternalStorageDirectory();
-        File directory = new File(sdCard.getAbsolutePath() + "/TestRunData");
+        File directory = new File(sdCard.getAbsolutePath() + dirname);
         directory.mkdirs();
+
+        Log.d(TAG, sdCard.getAbsolutePath() + dirname);
 
         //Now create the file in the above directory and write the contents into it
         File file = new File(directory, getActivity().getResources().getString(R.string.filename));

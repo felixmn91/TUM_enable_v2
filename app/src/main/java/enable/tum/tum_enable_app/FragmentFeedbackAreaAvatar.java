@@ -22,8 +22,8 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserv
 
     private static final String TAG = "FeedbackAreaAvatar";
 
-    ImageView avatar;
-    TextView comment;
+    private ImageView avatar;
+    private TextView comment;
 
     //onCreate only Configures the fragment instance
     @Override
@@ -41,29 +41,26 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserv
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         avatar = (ImageView) getActivity().findViewById(R.id.imageAvatar);
         avatar.setImageResource(R.drawable.a_ok);
 
-        comment= (TextView) getActivity().findViewById(R.id.comment);
+        comment = (TextView) getActivity().findViewById(R.id.comment);
         comment.setText("Drücke auf das Bild um ein Produkt auszuwählen!");
 
         ProgramLogicSingleton.getInstance().registerAsObserver(this);
     }
 
     @Override
-    public void onOrderChange()
-    {
+    public void onOrderChange() {
         ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
         double kcal = instance.getKcalOfOrder();
 
         double goal = instance.getPlanedkcalIntake();
 
-
-        if (kcal==0){
+        if (kcal == 0) {
             avatar.setImageResource(R.drawable.a_ok);
             comment.setText("Drücke auf das Bild um ein Produkt auszuwählen!");
         }
@@ -75,10 +72,10 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserv
             avatar.setImageResource(R.drawable.a_ok);
             comment.setText("Ist heute etwa Cheat Day?");
 
-        } else if (kcal > (3/2*goal) && kcal <= (2*goal)){
+        } else if (kcal > (3 / 2 * goal) && kcal <= (2 * goal)) {
             avatar.setImageResource(R.drawable.a_not_ok);
             comment.setText("Bist du dir wirklich sicher?");
-        } else if (kcal > (2*goal)){
+        } else if (kcal > (2 * goal)) {
             avatar.setImageResource(R.drawable.a_sad);
             comment.setText("Ernsthaft?");
         }

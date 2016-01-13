@@ -17,8 +17,6 @@ public class ActivityGoodbyeScreen extends AppCompatActivity {
 
     private static final String TAG = "ActivityGoodByeScreen";
 
-    private TestVersion mSelectedVersion;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +25,7 @@ public class ActivityGoodbyeScreen extends AppCompatActivity {
 
         setContentView(R.layout.layout_good_bye);
 
-        ImageButton restart= (ImageButton) findViewById(R.id.McD);
+        ImageButton restart = (ImageButton) findViewById(R.id.McD);
 
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +34,5 @@ public class ActivityGoodbyeScreen extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
 }

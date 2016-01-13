@@ -1,20 +1,17 @@
 package enable.tum.tum_enable_app;
 
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.widget.RelativeLayout;
 
 import enable.tum.tum_enable_app.ProductHandling.Category;
-import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
 
 public class ActivityOrderingScreen extends FragmentActivity
         implements FragmentHealthyProductArea.OnHealthyProductSelectedListener,
-        FragmentUnhealthyProductArea.OnUnhealthyProductSelectedListener{
+        FragmentUnhealthyProductArea.OnUnhealthyProductSelectedListener {
 
     private static final String TAG = "LaunchActivity";
 
@@ -27,7 +24,7 @@ public class ActivityOrderingScreen extends FragmentActivity
         setContentView(R.layout.layout_ordering_screen);
 
         Intent i = getIntent();
-        TestVersion version = (TestVersion) i.getSerializableExtra(getResources().getString(R.string.strTestVersion));
+        TestVersions version = (TestVersions) i.getSerializableExtra(getResources().getString(R.string.strTestVersion));
         Log.d(TAG, version + "");
 
         FragmentManager fm = getFragmentManager();

@@ -20,6 +20,7 @@ public class TestRunData {
         String result = "Testdata: " + id + "\n";
         double preis = 0;
         double kcal = 0;
+        double kcalIntake = 0;
 
         for (Product p : order) {
             result += p.getName() + "\n";
@@ -28,7 +29,12 @@ public class TestRunData {
         }
 
         result += "Gesamtpreis: " + String.format("%.2f", preis) + "\n";
-        result += "Gesamt Kcal: " + String.format("%.2f", kcal) + "\n\n";
+        result += "Gesamt Kcal: " + String.format("%.2f", kcal) + "\n";
+
+        ProgramLogicSingleton instance = ProgramLogicSingleton.getInstance();
+        kcalIntake = instance.getPlanedkcalIntake();
+
+        result += "Eingegebene Kcal: " + String.format("%.2f", kcalIntake) + "\n";
 
         return result;
     }

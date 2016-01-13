@@ -13,8 +13,7 @@ import android.view.View;
 /**
  * TODO: document your custom view class.
  */
-public class FeedbackBarView extends View
-{
+public class FeedbackBarView extends View {
     private static final String TAG = "FeedbackBarView";
     private Paint paint;
 
@@ -45,15 +44,13 @@ public class FeedbackBarView extends View
     private float scale;
 
 
-    public FeedbackBarView(Context context)
-    {
+    public FeedbackBarView(Context context) {
         super(context);
 
         paint = new Paint();
     }
 
-    public FeedbackBarView(Context context, AttributeSet attrs)
-    {
+    public FeedbackBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         paint = new Paint();
@@ -62,14 +59,12 @@ public class FeedbackBarView extends View
         spectrumActualValue = 0f;
     }
 
-    public void calculateValues()
-    {
+    public void calculateValues() {
 
     }
 
     @Override
-    protected void onDraw(Canvas canvas)
-    {
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         // Initialize measueres to draw all elements
@@ -88,7 +83,7 @@ public class FeedbackBarView extends View
         barHeightBottom = height - paddingBottom;
         barHeightThresholdValue = barHeightBottom - (contentHeight * spectrumThresholdValue / spectrumMaxValue);
         barHeightActualValue = barHeightBottom - (contentHeight * spectrumActualValue / spectrumMaxValue);
-        barHeightMiddleValue = barHeightBottom - (contentHeight * spectrumMiddleValue/ spectrumMaxValue);
+        barHeightMiddleValue = barHeightBottom - (contentHeight * spectrumMiddleValue / spectrumMaxValue);
 
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.FILL);
@@ -98,14 +93,13 @@ public class FeedbackBarView extends View
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(barWidthLeft, barHeightTop, barWidthRight, barHeightBottom, paint);
 
-        if (spectrumActualValue <= spectrumThresholdValue)
-        {
+        if (spectrumActualValue <= spectrumThresholdValue) {
             paint.setColor(ContextCompat.getColor(getContext(), R.color.darkgreen));
             paint.setStyle(Paint.Style.FILL);
             canvas.drawRect(barWidthLeft, barHeightActualValue, barWidthRight, barHeightBottom, paint);
 
 
-        } else if (spectrumActualValue > spectrumThresholdValue && spectrumActualValue <= spectrumMiddleValue){
+        } else if (spectrumActualValue > spectrumThresholdValue && spectrumActualValue <= spectrumMiddleValue) {
 
             paint.setColor(ContextCompat.getColor(getContext(), R.color.darkgreen));
             paint.setStyle(Paint.Style.FILL);
@@ -116,8 +110,7 @@ public class FeedbackBarView extends View
             canvas.drawRect(barWidthLeft, barHeightActualValue, barWidthRight, barHeightThresholdValue, paint);
 
 
-        }
-        else if (spectrumActualValue > spectrumMiddleValue){
+        } else if (spectrumActualValue > spectrumMiddleValue) {
 
             paint.setColor(ContextCompat.getColor(getContext(), R.color.darkgreen));
             paint.setStyle(Paint.Style.FILL);
@@ -188,27 +181,22 @@ public class FeedbackBarView extends View
         canvas.drawText(label100PercentLine, barWidthLeft - textWidthValue - offsetToLeftSideOfBar, barHeightTop + textHeight / 2f, textPaint);
     }
 
-    public void setSpectrumThresholdValue(int spectrumThresholdValue)
-    {
+    public void setSpectrumThresholdValue(int spectrumThresholdValue) {
         this.spectrumThresholdValue = spectrumThresholdValue;
     }
 
-    public void setSpectrumMaxValue(int spectrumMaxValue)
-    {
+    public void setSpectrumMaxValue(int spectrumMaxValue) {
         this.spectrumMaxValue = spectrumMaxValue;
     }
 
-    public void setSpectrumMiddleValue (int spectrumMiddleValue){
+    public void setSpectrumMiddleValue(int spectrumMiddleValue) {
         this.spectrumMiddleValue = spectrumMiddleValue;
     }
 
-    public void setSpectrumActualValue(float spectrumActualValue)
-    {
-        if (spectrumActualValue > spectrumMaxValue)
-        {
+    public void setSpectrumActualValue(float spectrumActualValue) {
+        if (spectrumActualValue > spectrumMaxValue) {
             this.spectrumActualValue = spectrumMaxValue;
-        } else if (spectrumActualValue >= 0 && spectrumActualValue <= spectrumMaxValue)
-        {
+        } else if (spectrumActualValue >= 0 && spectrumActualValue <= spectrumMaxValue) {
             this.spectrumActualValue = spectrumActualValue;
         }
         invalidate();

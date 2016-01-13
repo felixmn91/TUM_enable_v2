@@ -38,8 +38,7 @@ public class FragmentFeedbackAreaBar extends Fragment implements IOrderObserver 
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         txtViewActualKcal = (TextView) getActivity().findViewById(R.id.txtKcal);
@@ -49,9 +48,9 @@ public class FragmentFeedbackAreaBar extends Fragment implements IOrderObserver 
         Log.d("Test", String.valueOf(goalkcal));
 
         feedbackBar = (FeedbackBarView) getActivity().findViewById(R.id.feedbackbar);
-        feedbackBar.setSpectrumMaxValue((int) (2f *goalkcal));
+        feedbackBar.setSpectrumMaxValue((int) (2f * goalkcal));
         feedbackBar.setSpectrumThresholdValue((int) goalkcal);
-        feedbackBar.setSpectrumMiddleValue((int) (1.5f *goalkcal));
+        feedbackBar.setSpectrumMiddleValue((int) (1.5f * goalkcal));
         feedbackBar.calculateValues();
         feedbackBar.setSpectrumActualValue(0);
 
@@ -61,11 +60,10 @@ public class FragmentFeedbackAreaBar extends Fragment implements IOrderObserver 
     }
 
     @Override
-    public void onOrderChange()
-    {
+    public void onOrderChange() {
         double actualKcal = ProgramLogicSingleton.getInstance().getKcalOfOrder();
         feedbackBar.setSpectrumActualValue((float) actualKcal);
 
-        txtViewActualKcal.setText("Kcal: " + (int)actualKcal);
+        txtViewActualKcal.setText("Kcal: " + (int) actualKcal);
     }
 }
