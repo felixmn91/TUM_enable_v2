@@ -1,5 +1,6 @@
 package enable.tum.tum_enable_app;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,16 @@ public class ActivityWelcomeScreenWithoutAvatar extends AppCompatActivity {
                 instance.updateplanedkcalIntake(Double.valueOf(mEingabe.getText().toString()));
 
                 Log.d(TAG, mEingabe.getText().toString());
+            }
+        });
+
+        final Button infoKcal = (Button) findViewById(R.id.infobtn_without_avatar);
+        infoKcal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment infoKcal = new InfoKcal();
+                infoKcal.show(getFragmentManager(), "kcal");
+                Log.d(TAG, "infoKcal");
             }
         });
     }

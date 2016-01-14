@@ -28,7 +28,6 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserv
     //onCreate only Configures the fragment instance
     @Override
     public void onCreate(Bundle saverdInstacesState) {
-
         super.onCreate(saverdInstacesState);
     }
 
@@ -77,7 +76,7 @@ public class FragmentFeedbackAreaAvatar extends Fragment implements IOrderObserv
             comment.setText("Bist du dir wirklich sicher?");
         } else if (kcal > (2 * goal)) {
             avatar.setImageResource(R.drawable.a_sad);
-            comment.setText("Ernsthaft?");
+            comment.setText("Nochmal überlegen?");
         }
     }
 }

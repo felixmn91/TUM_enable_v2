@@ -55,7 +55,7 @@
             android:textColor="@color/grey"/>
 
         <ImageButton
-            android:id="@+id/info"
+            android:id="@+id/infobtn_without_avatar"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"

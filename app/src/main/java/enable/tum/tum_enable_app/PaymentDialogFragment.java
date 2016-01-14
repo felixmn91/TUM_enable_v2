@@ -30,9 +30,10 @@ public class PaymentDialogFragment extends DialogFragment {
         builder.setMessage("Ihre Bestellung:\n" + listAllProducts())
                 .setPositiveButton("bestätigen", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        ProgramLogicSingleton.getInstance().resetProgrammLogicSingleton();
 
                         writeTestRunDataToFile();
+
+                        ProgramLogicSingleton.getInstance().resetProgrammLogicSingleton();
 
                         Intent newIntent = new Intent(getActivity(), ActivityGoodbyeScreen.class);
                         startActivity(newIntent);
