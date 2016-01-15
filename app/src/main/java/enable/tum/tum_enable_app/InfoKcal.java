@@ -18,8 +18,10 @@ public class InfoKcal extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setIcon(R.drawable.rsz_kcal);
-        builder.setMessage("Die Deutsche Gesellschaft für Ernährung empfiehlt:\n600 kcal pro Mahlzeit")
+        builder.setMessage("Die Deutsche Gesellschaft für Ernährung empfiehlt:\n" +
+                "Für Männer (1,80m; 78kg): 750kcal\n" +
+                "Für Frauen (1,71m; 69kg): 650kcal\n" +
+                "pro Mahlzeit")
                 .setNegativeButton("Ok, vielen Dank.", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }

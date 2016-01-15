@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import enable.tum.tum_enable_app.ProductHandling.ProgramLogicSingleton;
 
@@ -46,7 +47,7 @@ public class ActivityWelcomeScreenWithoutAvatar extends AppCompatActivity {
             }
         });
 
-        final Button infoKcal = (Button) findViewById(R.id.infobtn_without_avatar);
+        final ImageButton infoKcal = (ImageButton) findViewById(R.id.infobtn_without_avatar);
         infoKcal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

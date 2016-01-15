@@ -14,7 +14,7 @@
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:text="Health o' Meter"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/black"
         android:textStyle="bold"/>
 
@@ -37,7 +37,7 @@
         android:layout_gravity="center"
         android:textAlignment="center"
         android:text="Kcal: 0"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/black"
         android:textStyle="bold"/>
     />
